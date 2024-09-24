@@ -127,7 +127,7 @@ nav:
         - 文档:
                   - intro.md
                   - install.md
-                  - plugins.md
+                  - 配置: plugins.md
                   - usage.md
                   - new-hooks.md
                   - cli.md
