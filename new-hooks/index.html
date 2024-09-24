@@ -1,0 +1,1923 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="hellowac pre-commit 预提交处理，中文文档">
+      
+      
+      
+      
+        <link rel="prev" href="../usage/">
+      
+      
+        <link rel="next" href="../cli/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.4">
+    
+    
+      
+        <title>创建新钩子 - pre-commimt</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bd3936ea.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#创建新钩子" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+你当前浏览的版本已不是最新版本，
+<a href="../..">
+    <strong>点击这里</strong>
+</a>查看最新版本的文档
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),outdated=__md_get("__outdated",sessionStorage);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="pre-commimt" class="md-header__button md-logo" aria-label="pre-commimt" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            pre-commimt
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              创建新钩子
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/hellowac/pre-commit-doc-zh-cn" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hellowac/pre-commit-doc-zh-cn
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  欢迎来到pre-commmit文档!
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../intro/" class="md-tabs__link">
+          
+  
+    
+  
+  文档
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hooks/" class="md-tabs__link">
+        
+  
+    
+  
+  支持的钩子
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/pre-commit/demo-repo#readme" class="md-tabs__link">
+        
+  
+    
+  
+  样例
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="pre-commimt" class="md-nav__button md-logo" aria-label="pre-commimt" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    pre-commimt
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/hellowac/pre-commit-doc-zh-cn" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hellowac/pre-commit-doc-zh-cn
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    欢迎来到pre-commmit文档!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    文档
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            文档
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    配置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    创建新钩子
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    创建新钩子
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#以交互方式开发钩子" class="md-nav__link">
+    以交互方式开发钩子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#支持的语言" class="md-nav__link">
+    支持的语言
+  </a>
+  
+    <nav class="md-nav" aria-label="支持的语言">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conda" class="md-nav__link">
+    conda
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coursier" class="md-nav__link">
+    coursier
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dart" class="md-nav__link">
+    dart
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    docker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker_image" class="md-nav__link">
+    docker_image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet" class="md-nav__link">
+    dotnet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fail" class="md-nav__link">
+    fail
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golang" class="md-nav__link">
+    golang
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haskell" class="md-nav__link">
+    haskell
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua" class="md-nav__link">
+    lua
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node" class="md-nav__link">
+    node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perl" class="md-nav__link">
+    perl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    python
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python_venv" class="md-nav__link">
+    python_venv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r" class="md-nav__link">
+    r
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ruby" class="md-nav__link">
+    ruby
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rust" class="md-nav__link">
+    rust
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swift" class="md-nav__link">
+    swift
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pygrep" class="md-nav__link">
+    pygrep
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#script" class="md-nav__link">
+    script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system" class="md-nav__link">
+    system
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    命令行接口
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    高级功能
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    贡献
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    支持的钩子
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/pre-commit/demo-repo#readme" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    样例
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#以交互方式开发钩子" class="md-nav__link">
+    以交互方式开发钩子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#支持的语言" class="md-nav__link">
+    支持的语言
+  </a>
+  
+    <nav class="md-nav" aria-label="支持的语言">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conda" class="md-nav__link">
+    conda
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coursier" class="md-nav__link">
+    coursier
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dart" class="md-nav__link">
+    dart
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    docker
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker_image" class="md-nav__link">
+    docker_image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dotnet" class="md-nav__link">
+    dotnet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fail" class="md-nav__link">
+    fail
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golang" class="md-nav__link">
+    golang
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haskell" class="md-nav__link">
+    haskell
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua" class="md-nav__link">
+    lua
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node" class="md-nav__link">
+    node
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perl" class="md-nav__link">
+    perl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    python
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python_venv" class="md-nav__link">
+    python_venv
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r" class="md-nav__link">
+    r
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ruby" class="md-nav__link">
+    ruby
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rust" class="md-nav__link">
+    rust
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swift" class="md-nav__link">
+    swift
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pygrep" class="md-nav__link">
+    pygrep
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#script" class="md-nav__link">
+    script
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#system" class="md-nav__link">
+    system
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="创建新钩子">创建新钩子<a class="headerlink" href="#创建新钩子" title="Permanent link">&para;</a></h1>
+<p><strong>Creating new hooks</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">中文</label><label for="__tabbed_1_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>pre-commit 当前支持用<a href="#支持的语言">许多语言</a>编写的钩子。只要您的 git 仓库是一个可安装的包（gem、npm、pypi 等）或公开了一个可执行文件，就可以与 pre-commit 一起使用。每个 git 仓库可以支持您想要的任意数量的语言/钩子。</p>
+<p>钩子必须在失败时退出非零状态，或修改文件。</p>
+<p>包含 pre-commit 插件的 git 仓库必须包含一个 <code>.pre-commit-hooks.yaml</code> 文件，该文件告诉 pre-commit：</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#hooks-id"><code>id</code></a><span id="hooks-id"></span></td>
+<td>钩子的 ID - 在 <code>pre-commit-config.yaml</code> 中使用。</td>
+</tr>
+<tr>
+<td><a href="#hooks-name"><code>name</code></a><span id="hooks-name"></span></td>
+<td>钩子的名称 - 在钩子执行期间显示。</td>
+</tr>
+<tr>
+<td><a href="#hooks-entry"><code>entry</code></a><span id="hooks-entry"></span></td>
+<td>入口点 - 要运行的可执行文件。<code>entry</code> 还可以包含不会被覆盖的参数，例如 <code>entry: autopep8 -i</code>。</td>
+</tr>
+<tr>
+<td><a href="#hooks-language"><code>language</code></a><span id="hooks-language"></span></td>
+<td>钩子的语言 - 告诉 pre-commit 如何安装钩子。</td>
+</tr>
+<tr>
+<td><a href="#hooks-files"><code>files</code></a><span id="hooks-files"></span></td>
+<td>（可选，默认为 <code>''</code>）要运行的文件的模式。</td>
+</tr>
+<tr>
+<td><a href="#hooks-exclude"><code>exclude</code></a><span id="hooks-exclude"></span></td>
+<td>（可选，默认为 <code>^$</code>）排除与 <a href="#hooks-files"><code>files</code></a> 匹配的文件。</td>
+</tr>
+<tr>
+<td><a href="#hooks-types"><code>types</code></a><span id="hooks-types"></span></td>
+<td>（可选，默认为 <code>[file]</code>）要运行的文件类型列表（AND）。参见<a href="../advanced/#根据文件类型过滤">使用类型过滤文件</a>。</td>
+</tr>
+<tr>
+<td><a href="#hooks-types_or"><code>types_or</code></a><span id="hooks-types_or"></span></td>
+<td>（可选，默认为 <code>[]</code>）要运行的文件类型列表（OR）。参见<a href="../advanced/#根据文件类型过滤">使用类型过滤文件</a>。<em>2.9.0 版本新增</em>。</td>
+</tr>
+<tr>
+<td><a href="#hooks-exclude_types"><code>exclude_types</code></a><span id="hooks-exclude_types"></span></td>
+<td>（可选，默认为 <code>[]</code>）要排除的文件的模式。</td>
+</tr>
+<tr>
+<td><a href="#hooks-always_run"><code>always_run</code></a><span id="hooks-always_run"></span></td>
+<td>（可选，默认为 <code>false</code>）如果为 <code>true</code>，则即使没有匹配的文件，这个钩子也会运行。</td>
+</tr>
+<tr>
+<td><a href="#hooks-fail_fast"><code>fail_fast</code></a><span id="hooks-fail_fast"></span></td>
+<td>（可选，默认为 <code>false</code>）如果为 <code>true</code>，pre-commit 会在该钩子失败时停止运行钩子。<em>2.16.0 版本新增</em>。</td>
+</tr>
+<tr>
+<td><a href="#hooks-verbose"><code>verbose</code></a><span id="hooks-verbose"></span></td>
+<td>（可选，默认为 <code>false</code>）如果为 <code>true</code>，则即使钩子通过，也强制打印钩子的输出。</td>
+</tr>
+<tr>
+<td><a href="#hooks-pass_filenames"><code>pass_filenames</code></a><span id="hooks-pass_filenames"></span></td>
+<td>（可选，默认为 <code>true</code>）如果为 <code>false</code>，则不会向钩子传递文件名。</td>
+</tr>
+<tr>
+<td><a href="#hooks-require_serial"><code>require_serial</code></a><span id="hooks-require_serial"></span></td>
+<td>（可选，默认为 <code>false</code>）如果为 <code>true</code>，则这个钩子将使用单个进程而不是并行执行。</td>
+</tr>
+<tr>
+<td><a href="#hooks-description"><code>description</code></a><span id="hooks-description"></span></td>
+<td>（可选，默认为 <code>''</code>）钩子的描述。仅用于元数据目的。</td>
+</tr>
+<tr>
+<td><a href="#hooks-language_version"><code>language_version</code></a><span id="hooks-language_version"></span></td>
+<td>（可选，默认为 <code>default</code>）参见<a href="../advanced/#覆盖语言版本">覆盖语言版本</a>。</td>
+</tr>
+<tr>
+<td><a href="#hooks-minimum_pre_commit_version"><code>minimum_pre_commit_version</code></a><span id="hooks-minimum_pre_commit_version"></span></td>
+<td>（可选，默认为 <code>'0'</code>）允许指示最低兼容的 pre-commit 版本。</td>
+</tr>
+<tr>
+<td><a href="#hooks-args"><code>args</code></a><span id="hooks-args"></span></td>
+<td>（可选，默认为 <code>[]</code>）要传递给钩子的附加参数列表。</td>
+</tr>
+<tr>
+<td><a href="#hooks-stages"><code>stages</code></a><span id="hooks-stages"></span></td>
+<td>（可选，默认为所有阶段）选择要运行的 git 钩子。参见<a href="../advanced/#限制钩子在某些阶段运行">限制钩子在特定阶段运行</a>。</td>
+</tr>
+</tbody>
+</table>
+<p>例如：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>trailing-whitespace
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>Trim Trailing Whitespace
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">description</span>:<span style="color: #bbbbbb"> </span>This hook trims trailing whitespace.
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span>trailing-whitespace-fixer
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>python
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">types</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">text</span>]
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>pre-commit currently supports hooks written in
+<a href="#supported-languages">many languages</a>. As long as your git repo is an
+installable package (gem, npm, pypi, etc.) or exposes an executable, it can be
+used with pre-commit. Each git repo can support as many languages/hooks as you
+want.</p>
+<p>The hook must exit nonzero on failure or modify files.</p>
+<p>A git repo containing pre-commit plugins must contain a <code>.pre-commit-hooks.yaml</code>
+file that tells pre-commit:</p>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>=r=
+    =c= [`id`](_#hooks-id)
+    =c= the id of the hook - used in pre-commit-config.yaml.
+=r=
+    =c= [`name`](_#hooks-name)
+    =c= the name of the hook - shown during hook execution.
+=r=
+    =c= [`entry`](_#hooks-entry)
+    =c= the entry point - the executable to run.  `entry` can also contain
+        arguments that will not be overridden such as `entry: autopep8 -i`.
+=r=
+    =c= [`language`](_#hooks-language)
+    =c= the language of the hook - tells pre-commit how to install the hook.
+=r=
+    =c= [`files`](_#hooks-files)
+    =c= (optional: default `&#39;&#39;`) the pattern of files to run on.
+=r=
+    =c= [`exclude`](_#hooks-exclude)
+    =c= (optional: default `^$`)  exclude files that were matched by [`files`](#hooks-files).
+=r=
+    =c= [`types`](_#hooks-types)
+    =c= (optional: default `[file]`)  list of file types to run on (AND).  See
+        [Filtering files with types](#filtering-files-with-types).
+=r=
+    =c= [`types_or`](_#hooks-types_or)
+    =c= (optional: default `[]`)  list of file types to run on (OR).  See
+        [Filtering files with types](#filtering-files-with-types).
+        _new in 2.9.0_.
+=r=
+    =c= [`exclude_types`](_#hooks-exclude_types)
+    =c= (optional: default `[]`)  the pattern of files to exclude.
+=r=
+    =c= [`always_run`](_#hooks-always_run)
+    =c= (optional: default `false`) if `true` this hook will run even if there
+        are no matching files.
+=r=
+    =c= [`fail_fast`](_#hooks-fail_fast)
+    =c= (optional: default `false`) if `true` pre-commit will stop running
+        hooks if this hook fails.  _new in 2.16.0_.
+=r=
+    =c= [`verbose`](_#hooks-verbose)
+    =c= (optional: default `false`) if `true`, forces the output of the hook to be printed even when
+        the hook passes.
+=r=
+    =c= [`pass_filenames`](_#hooks-pass_filenames)
+    =c= (optional: default `true`) if `false` no filenames will be passed to
+        the hook.
+=r=
+    =c= [`require_serial`](_#hooks-require_serial)
+    =c= (optional: default `false`) if `true` this hook will execute using a
+        single process instead of in parallel.
+=r=
+    =c= [`description`](_#hooks-description)
+    =c= (optional: default `&#39;&#39;`) description of the hook.  used for metadata
+        purposes only.
+=r=
+    =c= [`language_version`](_#hooks-language_version)
+    =c= (optional: default `default`) see
+        [Overriding language version](#overriding-language-version).
+=r=
+    =c= [`minimum_pre_commit_version`](_#hooks-minimum_pre_commit_version)
+    =c= (optional: default `&#39;0&#39;`) allows one to indicate a minimum
+        compatible pre-commit version.
+=r=
+    =c= [`args`](_#hooks-args)
+    =c= (optional: default `[]`) list of additional parameters to pass to the hook.
+=r=
+    =c= [`stages`](_#hooks-stages)
+    =c= (optional: default (all stages)) selects which git hook(s) to run for.
+        See [Confining hooks to run at certain stages](#confining-hooks-to-run-at-certain-stages).
+</code></pre></div>
+<p>For example:</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>trailing-whitespace
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>Trim Trailing Whitespace
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">description</span>:<span style="color: #bbbbbb"> </span>This hook trims trailing whitespace.
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span>trailing-whitespace-fixer
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>python
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">types</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">text</span>]
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="以交互方式开发钩子">以交互方式开发钩子<a class="headerlink" href="#以交互方式开发钩子" title="Permanent link">&para;</a></h2>
+<p><strong>Developing hooks interactively</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">中文</label><label for="__tabbed_2_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>由于 <code>.pre-commit-config.yaml</code> 中的 <a href="../cli/#repos-repo"><code>repo</code></a> 属性可以指向 <code>git clone ...</code> 理解的任何内容，因此在开发钩子时，通常很有用的做法是将其指向一个本地目录。</p>
+<p><a href="../cli/#pre-commit-try-repo-repo-options"><code>pre-commit try-repo</code></a> 简化了这一过程，提供了一种快速尝试仓库的方法。以下是如何交互式地使用它：</p>
+<p><em>注意</em>：当使用钩子类型 <code>prepare-commit-msg</code> 和 <code>commit-msg</code> 时，可能需要提供 <code>--commit-msg-filename</code> 参数。</p>
+<p>对本地目录使用 <code>try-repo</code> 不需要提交。<code>pre-commit</code> 会克隆任何已跟踪但未提交的更改。</p>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>~/work/hook-repo $ git checkout origin/main -b feature
+
+# ... 做一些更改
+
+# 在另一个终端或标签页
+
+~/work/other-repo $ pre-commit try-repo ../hook-repo foo --verbose --all-files
+===============================================================================
+Using config:
+===============================================================================
+repos:
+-   repo: ../hook-repo
+    rev: 84f01ac09fcd8610824f9626a590b83cfae9bcbd
+    hooks:
+    -   id: foo
+===============================================================================
+[INFO] Initializing environment for ../hook-repo.
+Foo......................................................................Passed
+- hook id: foo
+- duration: 0.02s
+
+Hello from foo hook!
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Since the <a href="#repos-repo"><code>repo</code></a> property of <code>.pre-commit-config.yaml</code> can refer to anything
+that <code>git clone ...</code> understands, it's often useful to point it at a local
+directory while developing hooks.</p>
+<p><a href="#pre-commit-try-repo"><code>pre-commit try-repo</code></a> streamlines this process by
+enabling a quick way to try out a repository.  Here's how one might work
+interactively:</p>
+<p><em>note</em>: you may need to provide <code>--commit-msg-filename</code> when using this
+command with hook types <code>prepare-commit-msg</code> and <code>commit-msg</code>.</p>
+<p>a commit is not necessary to <code>try-repo</code> on a local
+directory. <code>pre-commit</code> will clone any tracked uncommitted changes.</p>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>~/work/hook-repo $ git checkout origin/main -b feature
+
+# ... make some changes
+
+# In another terminal or tab
+
+~/work/other-repo $ pre-commit try-repo ../hook-repo foo --verbose --all-files
+===============================================================================
+Using config:
+===============================================================================
+repos:
+-   repo: ../hook-repo
+    rev: 84f01ac09fcd8610824f9626a590b83cfae9bcbd
+    hooks:
+    -   id: foo
+===============================================================================
+[INFO] Initializing environment for ../hook-repo.
+Foo......................................................................Passed
+- hook id: foo
+- duration: 0.02s
+
+Hello from foo hook!
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="支持的语言">支持的语言<a class="headerlink" href="#支持的语言" title="Permanent link">&para;</a></h2>
+<p><strong>Supported languages</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">中文</label><label for="__tabbed_3_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li><a href="#conda">conda</a></li>
+<li><a href="#coursier">coursier</a></li>
+<li><a href="#dart">dart</a></li>
+<li><a href="#docker">docker</a></li>
+<li><a href="#docker_image">docker_image</a></li>
+<li><a href="#dotnet">dotnet</a></li>
+<li><a href="#fail">fail</a></li>
+<li><a href="#golang">golang</a></li>
+<li><a href="#haskell">haskell</a></li>
+<li><a href="#lua">lua</a></li>
+<li><a href="#node">node</a></li>
+<li><a href="#perl">perl</a></li>
+<li><a href="#python">python</a></li>
+<li><a href="#python_venv">python_venv</a></li>
+<li><a href="#r">r</a></li>
+<li><a href="#ruby">ruby</a></li>
+<li><a href="#rust">rust</a></li>
+<li><a href="#swift">swift</a></li>
+<li><a href="#pygrep">pygrep</a></li>
+<li><a href="#script">script</a></li>
+<li><a href="#system">system</a></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><a href="#conda">conda</a></li>
+<li><a href="#coursier">coursier</a></li>
+<li><a href="#dart">dart</a></li>
+<li><a href="#docker">docker</a></li>
+<li><a href="#docker_image">docker_image</a></li>
+<li><a href="#dotnet">dotnet</a></li>
+<li><a href="#fail">fail</a></li>
+<li><a href="#golang">golang</a></li>
+<li><a href="#haskell">haskell</a></li>
+<li><a href="#lua">lua</a></li>
+<li><a href="#node">node</a></li>
+<li><a href="#perl">perl</a></li>
+<li><a href="#python">python</a></li>
+<li><a href="#python_venv">python_venv</a></li>
+<li><a href="#r">r</a></li>
+<li><a href="#ruby">ruby</a></li>
+<li><a href="#rust">rust</a></li>
+<li><a href="#swift">swift</a></li>
+<li><a href="#pygrep">pygrep</a></li>
+<li><a href="#script">script</a></li>
+<li><a href="#system">system</a></li>
+</ul>
+</div>
+</div>
+</div>
+<h3 id="conda">conda<a class="headerlink" href="#conda" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">中文</label><label for="__tabbed_4_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>钩子仓库必须包含一个 <code>environment.yml</code> 文件，该文件将通过 <code>conda env create --file environment.yml ...</code> 用于创建环境。</p>
+<p><code>conda</code> 语言还支持 <a href="../plugins/#config-additional_dependencies"><code>additional_dependencies</code></a>，并将任何值直接传递给 <code>conda install</code>。因此，这种语言可以与 <a href="../advanced/#本地仓库钩子">local</a> 钩子一起使用。</p>
+<p><em>2.17.0 版本新增</em>：可以通过设置环境变量 <code>PRE_COMMIT_USE_MAMBA=1</code> 或 <code>PRE_COMMIT_USE_MICROMAMBA=1</code> 使用 <code>mamba</code> 或 <code>micromamba</code> 进行安装。</p>
+<p>__支持：__只要系统安装了 <code>conda</code> 二进制文件（例如 <a href="https://docs.conda.io/en/latest/miniconda.html"><code>miniconda</code></a>），<code>conda</code> 钩子就可以工作。它已在 Linux、macOS 和 Windows 上进行了测试。</p>
+</div>
+<div class="tabbed-block">
+<p>The hook repository must contain an <code>environment.yml</code> file which will be used
+via <code>conda env create --file environment.yml ...</code> to create the environment.</p>
+<p>The <code>conda</code> language also supports <a href="../plugins/#config-additional_dependencies"><code>additional_dependencies</code></a>
+and will pass any of the values directly into <code>conda install</code>.  This language can therefore be
+used with <a href="../advanced/#本地仓库钩子">local</a> hooks.</p>
+<p><em>new in 2.17.0</em>: <code>mamba</code> or <code>micromamba</code> can be used to install instead via the
+<code>PRE_COMMIT_USE_MAMBA=1</code> or <code>PRE_COMMIT_USE_MICROMAMBA=1</code> environment
+variables.</p>
+<p><strong>Support:</strong> <code>conda</code> hooks work as long as there is a system-installed <code>conda</code>
+binary (such as <a href="https://docs.conda.io/en/latest/miniconda.html"><code>miniconda</code></a>).
+It has been tested on linux, macOS, and windows.</p>
+</div>
+</div>
+</div>
+<h3 id="coursier">coursier<a class="headerlink" href="#coursier" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">中文</label><label for="__tabbed_5_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>新特性 2.8.0：</p>
+<p>钩子仓库必须包含一个 <code>.pre-commit-channel</code> 文件夹，该文件夹必须包含用于安装钩子的 Coursier <a href="https://get-coursier.io/docs/2.0.0-RC6-10/cli-install.html#application-descriptor-reference">应用程序描述符</a>。对于配置 Coursier 钩子，你的 <a href="#hooks-entry"><code>entry</code></a> 应该对应于从仓库的 <code>.pre-commit-channel</code> 文件夹安装的可执行文件。</p>
+<p>支持情况：已知 <code>coursier</code> 钩子可以在安装了 <code>cs</code> 或 <code>coursier</code> 包管理器的任何系统上工作。你安装的特定 Coursier 应用程序可能依赖于不同版本的 JVM，请查阅钩子的文档以获取澄清。它已在 Linux 上进行了测试。</p>
+<p>新特性 2.18.0：pre-commit 现在支持 <code>coursier</code> 包管理器可执行文件的命名。</p>
+<p>新特性 3.0.0：<code>language: coursier</code> 钩子现在支持 <code>repo: local</code> 和 <code>additional_dependencies</code>。</p>
+</div>
+<div class="tabbed-block">
+<p><em>new in 2.8.0</em></p>
+<p>The hook repository must have a <code>.pre-commit-channel</code> folder and that folder
+must contain the coursier
+<a href="https://get-coursier.io/docs/2.0.0-RC6-10/cli-install.html#application-descriptor-reference">application descriptors</a>
+for the hook to install. For configuring coursier hooks, your
+<a href="#hooks-entry"><code>entry</code></a> should correspond to an executable installed from the
+repository's <code>.pre-commit-channel</code> folder.</p>
+<p><strong>Support:</strong> <code>coursier</code> hooks are known to work on any system which has the
+<code>cs</code> or <code>coursier</code> package manager installed. The specific coursier
+applications you install may depend on various versions of the JVM, consult
+the hooks' documentation for clarification.  It has been tested on linux.</p>
+<p><em>new in 2.18.0</em>: pre-commit now supports the <code>coursier</code> naming of the package
+manager executable.</p>
+<p><em>new in 3.0.0</em>: <code>language: coursier</code> hooks now support <code>repo: local</code> and
+<code>additional_dependencies</code>.</p>
+</div>
+</div>
+</div>
+<h3 id="dart">dart<a class="headerlink" href="#dart" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">中文</label><label for="__tabbed_6_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>新特性 2.15.0：</p>
+<p>钩子仓库必须包含一个 <code>pubspec.yaml</code> 文件——这个文件必须包含一个 <code>executables</code> 部分，这部分将列出安装后可用的二进制文件。将 <a href="#hooks-entry"><code>entry</code></a> 与某个可执行文件匹配。</p>
+<p><code>pre-commit</code> 将使用 <code>dart compile exe bin/{executable}.dart</code> 构建每个可执行文件。</p>
+<p><code>language: dart</code> 还支持 <a href="../plugins/#config-additional_dependencies"><code>additional_dependencies</code></a> 来指定依赖项的版本，通过 <code>:</code> 分隔包名：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">additional_dependencies</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #BA2121">&#39;hello_world_dart:1.0.0&#39;</span>]
+</code></pre></div>
+<p>支持情况：已知 <code>dart</code> 钩子可以在安装了 <code>dart</code> SDK 的任何系统上工作。它已在 Linux、macOS 和 Windows 上进行了测试。</p>
+</div>
+<div class="tabbed-block">
+<p><em>new in 2.15.0</em></p>
+<p>The hook repository must have a <code>pubspec.yaml</code> -- this must contain an
+<code>executables</code> section which will list the binaries that will be available
+after installation.  Match the <a href="#hooks-entry"><code>entry</code></a> to an executable.</p>
+<p><code>pre-commit</code> will build each executable using <code>dart compile exe bin/{executable}.dart</code>.</p>
+<p><code>language: dart</code> also supports <a href="../plugins/#config-additional_dependencies"><code>additional_dependencies</code></a>.
+to specify a version for a dependency, separate the package name by a <code>:</code>:</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">additional_dependencies</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #BA2121">&#39;hello_world_dart:1.0.0&#39;</span>]
+</code></pre></div>
+<p><strong>Support:</strong> <code>dart</code> hooks are known to work on any system which has the <code>dart</code>
+sdk installed.  It has been tested on linux, macOS, and windows.</p>
+</div>
+</div>
+</div>
+<h3 id="docker">docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">中文</label><label for="__tabbed_7_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>钩子仓库必须包含一个 <code>Dockerfile</code>。它将通过 <code>docker build .</code> 进行安装。</p>
+<p>运行 Docker 钩子需要主机上有一个运行中的 Docker 引擎。对于配置 Docker 钩子，你的 <a href="#hooks-entry"><code>entry</code></a> 应该对应于 Docker 容器内的某个可执行文件，并用于覆盖默认容器的入口点。当 pre-commit 向运行容器命令传递文件列表作为参数时，你的 Docker <code>CMD</code> 不会运行。Docker 允许你使用任何 pre-commit 没有内置支持的语言。</p>
+<p>pre-commit 将自动将仓库源代码作为卷挂载使用 <code>-v $PWD:/src:rw,Z</code>，并使用 <code>--workdir /src</code> 设置工作目录。</p>
+<p>支持情况：已知 docker 钩子可以在有可用的 <code>docker</code> 可执行文件的任何系统上工作。它已在 Linux 和 macOS 上进行了测试。通过 <code>boot2docker</code> 运行的钩子已知无法对文件进行修改。</p>
+<p>可以查看 <a href="https://github.com/pre-commit/pre-commit-docker-flake8">这个仓库</a> 来获取一个基于 Docker 的钩子示例。</p>
+</div>
+<div class="tabbed-block">
+<p>The hook repository must have a <code>Dockerfile</code>.  It will be installed via
+<code>docker build .</code>.</p>
+<p>Running Docker hooks requires a running Docker engine on your host.  For
+configuring Docker hooks, your <a href="#hooks-entry"><code>entry</code></a> should correspond to an executable
+inside the Docker container, and will be used to override the default container
+entrypoint. Your Docker <code>CMD</code> will not run when pre-commit passes a file list
+as arguments to the run container command. Docker allows you to use any
+language that's not supported by pre-commit as a builtin.</p>
+<p>pre-commit will automatically mount the repository source as a volume using
+<code>-v $PWD:/src:rw,Z</code> and set the working directory using <code>--workdir /src</code>.</p>
+<p><strong>Support:</strong> docker hooks are known to work on any system which has a working
+<code>docker</code> executable.  It has been tested on linux and macOS.  Hooks that are
+run via <code>boot2docker</code> are known to be unable to make modifications to files.</p>
+<p>See <a href="https://github.com/pre-commit/pre-commit-docker-flake8">this repository</a>
+for an example Docker-based hook.</p>
+</div>
+</div>
+</div>
+<h3 id="docker_image">docker_image<a class="headerlink" href="#docker_image" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">中文</label><label for="__tabbed_8_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+<div class="tabbed-block">
+<p>相对于 <code>docker</code> 钩子，<code>docker_image</code> 提供了一种更轻量级的方法。<code>docker_image</code> "语言"使用现有的 Docker 镜像来提供钩子可执行文件。</p>
+<p><code>docker_image</code> 钩子可以方便地配置为 <a href="../advanced/#本地仓库钩子">local</a> 钩子。</p>
+<p><a href="#hooks-entry"><code>entry</code></a> 指定了要使用的 Docker 标签。如果镜像定义了 <code>ENTRYPOINT</code>，不需要特别操作就可以连接到可执行文件。如果容器没有指定 <code>ENTRYPOINT</code> 或者你想要更改入口点，你可以在 <a href="#hooks-entry"><code>entry</code></a> 中指定它。</p>
+<p>例如：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>dockerfile-provides-entrypoint
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>...
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>docker_image
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span>my.registry.example.com/docker-image-1:latest
+-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>dockerfile-no-entrypoint-1
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>...
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>docker_image
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span>--entrypoint my-exe my.registry.example.com/docker-image-2:latest
+<span style="color: #3D7B7B; font-style: italic"># 另一种等效的解决方案</span>
+-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>dockerfile-no-entrypoint-2
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>...
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>docker_image
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span>my.registry.example.com/docker-image-3:latest my-exe
+</code></pre></div>
+<p>在这个配置中：</p>
+<ul>
+<li><code>dockerfile-provides-entrypoint</code> 使用了带有预定义 <code>ENTRYPOINT</code> 的镜像。</li>
+<li><code>dockerfile-no-entrypoint-1</code> 和 <code>dockerfile-no-entrypoint-2</code> 指定了要使用的可执行文件 <code>my-exe</code>，这在镜像没有定义 <code>ENTRYPOINT</code> 或需要覆盖 <code>ENTRYPOINT</code> 时很有用。</li>
+</ul>
+</div>
+</div>
+</div>
+<h3 id="dotnet">dotnet<a class="headerlink" href="#dotnet" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">中文</label><label for="__tabbed_9_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>新特性 2.8.0：</p>
+<p>dotnet 钩子使用系统安装的 dotnet CLI 进行安装。</p>
+<p>钩子仓库必须包含一个可以按照<a href="https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools-how-to-create">这个</a>示例进行 <code>pack</code> 和 <code>install</code> 的 dotnet CLI 工具。<code>entry</code> 应该匹配构建仓库后创建的可执行文件。目前不支持附加依赖项。</p>
+<p>支持情况：已知 dotnet 钩子可以在安装了 dotnet CLI 的任何系统上工作。它已在 Linux 和 Windows 上进行了测试。</p>
+</div>
+<div class="tabbed-block">
+<p><em>new in 2.8.0</em></p>
+<p>dotnet hooks are installed using the system installation of the dotnet CLI.</p>
+<p>Hook repositories must contain a dotnet CLI tool which can be <code>pack</code>ed and
+<code>install</code>ed as per <a href="https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools-how-to-create">this</a>
+example. The <code>entry</code> should match an executable created by building the
+repository. Additional dependencies are not currently supported.</p>
+<p><strong>Support:</strong> dotnet hooks are known to work on any system which has the dotnet
+CLI installed.  It has been tested on linux and windows.</p>
+</div>
+</div>
+</div>
+<h3 id="fail">fail<a class="headerlink" href="#fail" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">中文</label><label for="__tabbed_10_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><code>fail</code> 是一种轻量级的 <a href="#hooks-language"><code>language</code></a>，用于通过文件名禁止文件。<code>fail</code> 语言尤其适用于 <a href="../advanced/#本地仓库钩子">local</a> 钩子。</p>
+<p>当钩子失败时，<a href="#hooks-entry"><code>entry</code></a> 将会被打印出来。建议在 <a href="#hooks-name"><code>name</code></a> 中提供简短的描述，并在 <a href="#hooks-entry"><code>entry</code></a> 中提供更详细的修复说明。</p>
+<p>以下是一个示例，它防止除了以 <code>.rst</code> 结尾的文件之外的任何文件被添加到 <code>changelog</code> 目录：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>local
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>changelogs-rst
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>changelogs must be rst
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&#39;changelog</span><span style="color: #19177C"> </span><span style="color: #BA2121">filenames</span><span style="color: #19177C"> </span><span style="color: #BA2121">must</span><span style="color: #19177C"> </span><span style="color: #BA2121">end</span><span style="color: #19177C"> </span><span style="color: #BA2121">in</span><span style="color: #19177C"> </span><span style="color: #BA2121">.rst&#39;</span>
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>fail
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">files</span>:<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&#39;changelog/.*(?&lt;!\.rst)$&#39;</span>
+</code></pre></div>
+<p>在这个配置中：</p>
+<ul>
+<li><code>id</code> 是钩子的唯一标识符。</li>
+<li><code>name</code> 描述了钩子的用途。</li>
+<li><code>entry</code> 指定了当钩子失败时打印的消息。</li>
+<li><code>language</code> 设置为 <code>fail</code>，表示这是一个失败的钩子。</li>
+<li><code>files</code> 指定了匹配文件的模式，这里使用了正则表达式来匹配不以 <code>.rst</code> 结尾的文件。</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>A lightweight <a href="#hooks-language"><code>language</code></a> to forbid files by filename.  The <code>fail</code> language is
+especially useful for <a href="../advanced/#本地仓库钩子">local</a> hooks.</p>
+<p>The <a href="#hooks-entry"><code>entry</code></a> will be printed when the hook fails.  It is suggested to provide
+a brief description for <a href="#hooks-name"><code>name</code></a> and more verbose fix instructions in <a href="#hooks-entry"><code>entry</code></a>.</p>
+<p>Here's an example which prevents any file except those ending with <code>.rst</code> from
+being added to the <code>changelog</code> directory:</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>local
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>changelogs-rst
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>changelogs must be rst
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span>changelog filenames must end in .rst
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>fail
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">files</span>:<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&#39;changelog/.*(?&lt;!\.rst)$&#39;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="golang">golang<a class="headerlink" href="#golang" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">中文</label><label for="__tabbed_11_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>钩子仓库必须包含 Go 源代码。它将通过 <code>go install ./...</code> 进行安装。pre-commit 将为每个钩子创建一个隔离的 <code>GOPATH</code>，<a href="#hooks-entry"><code>entry</code></a> 应该匹配将要安装到 <code>GOPATH</code> 的 <code>bin</code> 目录中的可执行文件。</p>
+<p>这种语言支持 <code>additional_dependencies</code> 并将任何值直接传递给 <code>go install</code>。它可以用作 <code>repo: local</code> 钩子。</p>
+<p><em>2.17.0 版本更改</em>：之前使用的是 <code>go get ./...</code>。</p>
+<p><em>3.0.0 版本新增</em>：如果未安装，pre-commit 将引导安装 <code>go</code>。<code>language: golang</code> 现在还支持 <code>language_version</code>。</p>
+<p>支持情况：已知 golang 钩子可以在安装了 go 的任何系统上工作。它已在 Linux、macOS 和 Windows 上进行了测试。</p>
+</div>
+<div class="tabbed-block">
+<p>The hook repository must contain go source code.  It will be installed via
+<code>go install ./...</code>.  pre-commit will create an isolated <code>GOPATH</code> for each hook
+and the <a href="#hooks-entry"><code>entry</code></a> should match an executable which will get installed into the
+<code>GOPATH</code>'s <code>bin</code> directory.</p>
+<p>This language supports <code>additional_dependencies</code> and will pass any of the values directly to <code>go
+install</code>. It can be used as a <code>repo: local</code> hook.</p>
+<p><em>changed in 2.17.0</em>: previously <code>go get ./...</code> was used</p>
+<p><em>new in 3.0.0</em>: pre-commit will bootstrap <code>go</code> if it is not present. <code>language: golang</code>
+also now supports <code>language_version</code></p>
+<p><strong>Support:</strong> golang hooks are known to work on any system which has go
+installed.  It has been tested on linux, macOS, and windows.</p>
+</div>
+</div>
+</div>
+<h3 id="haskell">haskell<a class="headerlink" href="#haskell" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">中文</label><label for="__tabbed_12_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>新特性 3.4.0：</p>
+<p>钩子仓库必须包含一个或多个 <code>*.cabal</code> 文件。安装后这些包中的 <code>executable</code> 将可用于 <a href="#hooks-entry"><code>entry</code></a>。</p>
+<p>这种语言支持 <code>additional_dependencies</code>，因此它可以用作 <code>repo: local</code> 钩子。</p>
+<p>支持情况：已知 haskell 钩子可以在安装了 <code>cabal</code> 的任何系统上工作。它已在 Linux、macOS 和 Windows 上进行了测试。</p>
+</div>
+<div class="tabbed-block">
+<p><em>new in 3.4.0</em></p>
+<p>The hook repository must have one or more <code>*.cabal</code> files.  Once installed
+the <code>executable</code>s from these packages will be available to use with <code>entry</code>.</p>
+<p>This language supports <code>additional_dependencies</code> so it can be used as a
+<code>repo: local</code> hook.</p>
+<p><strong>Support:</strong> haskell hooks are known to work on any system which has <code>cabal</code>
+installed.  It has been tested on linux, macOS, and windows.</p>
+</div>
+</div>
+</div>
+<h3 id="lua">lua<a class="headerlink" href="#lua" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="13:2"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><input id="__tabbed_13_2" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">中文</label><label for="__tabbed_13_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>新特性 2.17.0：</p>
+<p>Lua 钩子使用 Luarocks 使用的 Lua 版本进行安装。</p>
+<p>支持情况：已知 Lua 钩子可以在安装了 Luarocks 的任何系统上工作。它已在 Linux 和 macOS 上进行了测试，并且可能在 Windows 上也能工作。</p>
+</div>
+<div class="tabbed-block">
+<p><em>new in 2.17.0</em></p>
+<p>Lua hooks are installed with the version of Lua that is used by Luarocks.</p>
+<p><strong>Support:</strong> Lua hooks are known to work on any system which has Luarocks
+installed.  It has been tested on linux and macOS and <em>may</em> work on windows.</p>
+</div>
+</div>
+</div>
+<h3 id="node">node<a class="headerlink" href="#node" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="14:2"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><input id="__tabbed_14_2" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">中文</label><label for="__tabbed_14_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>钩子仓库必须包含一个 <code>package.json</code> 文件。它将通过 <code>npm install .</code> 进行安装。安装的包将提供一个可执行文件，该文件将匹配 <a href="#hooks-entry"><code>entry</code></a> —— 通常是通过 package.json 中的 <code>bin</code> 提供。</p>
+<p>支持情况：node 钩子不需要任何系统级依赖项即可工作。它已在 Linux、Windows 和 macOS 上进行了测试，并且可能在 cygwin 下也能工作。</p>
+</div>
+<div class="tabbed-block">
+<p>The hook repository must have a <code>package.json</code>.  It will be installed via
+<code>npm install .</code>.  The installed package will provide an executable that will
+match the <a href="#hooks-entry"><code>entry</code></a> – usually through <code>bin</code> in package.json.</p>
+<p><strong>Support:</strong> node hooks work without any system-level dependencies.  It has
+been tested on linux, windows, and macOS and <em>may</em> work under cygwin.</p>
+</div>
+</div>
+</div>
+<h3 id="perl">perl<a class="headerlink" href="#perl" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="15:2"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><input id="__tabbed_15_2" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">中文</label><label for="__tabbed_15_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>新特性 2.1.0：</p>
+<p>Perl 钩子使用 Perl 自带的 CPAN 包安装程序 <a href="https://perldoc.perl.org/cpan">cpan</a> 进行安装。</p>
+<p>钩子仓库必须包含 <code>cpan</code> 支持的内容，通常是 <code>Makefile.PL</code> 或 <code>Build.PL</code>，它用这些文件来安装要在钩子的 <a href="#hooks-entry"><code>entry</code></a> 定义中使用的可执行文件。仓库将通过 <code>cpan -T .</code> 进行安装（安装的文件存储在您的 pre-commit 缓存中，不会污染其他 Perl 安装）。</p>
+<p>当为 Perl 指定 <a href="../plugins/#config-additional_dependencies"><code>additional_dependencies</code></a> 时，您可以使用 <a href="https://perldoc.perl.org/CPAN#get%2c-make%2c-test%2c-install%2c-clean-modules-or-distributions"><code>cpan</code></a> 理解的任何<a href="https://perldoc.perl.org/CPAN#get%2c-make%2c-test%2c-install%2c-clean-modules-or-distributions">安装参数格式</a>。</p>
+<p>支持情况：Perl 钩子当前需要预先存在的 Perl 安装，包括在 <code>PATH</code> 中的 <code>cpan</code> 工具。它已在 Linux、macOS 和 Windows 上进行了测试。</p>
+</div>
+<div class="tabbed-block">
+<p><em>new in 2.1.0</em></p>
+<p>Perl hooks are installed using the system installation of
+<a href="https://perldoc.perl.org/cpan">cpan</a>, the CPAN package installer
+that comes with Perl.</p>
+<p>Hook repositories must have something that <code>cpan</code> supports, typically
+<code>Makefile.PL</code> or <code>Build.PL</code>, which it uses to install an executable to
+use in the <a href="#hooks-entry"><code>entry</code></a> definition for your hook. The repository will be installed
+via <code>cpan -T .</code> (with the installed files stored in your pre-commit cache,
+not polluting other Perl installations).</p>
+<p>When specifying <a href="../plugins/#config-additional_dependencies"><code>additional_dependencies</code></a> for Perl, you can use any of the
+<a href="https://perldoc.perl.org/CPAN#get%2c-make%2c-test%2c-install%2c-clean-modules-or-distributions">install argument formats understood by <code>cpan</code></a>.</p>
+<p><strong>Support:</strong> Perl hooks currently require a pre-existing Perl installation,
+including the <code>cpan</code> tool in <code>PATH</code>.  It has been tested on linux, macOS, and
+Windows.</p>
+</div>
+</div>
+</div>
+<h3 id="python">python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="16:2"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><input id="__tabbed_16_2" name="__tabbed_16" type="radio" /><div class="tabbed-labels"><label for="__tabbed_16_1">中文</label><label for="__tabbed_16_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>钩子仓库必须能够通过 <code>pip install .</code> 进行安装（通常使用 <code>setup.py</code> 或 <code>pyproject.toml</code>）。安装的包将提供一个可执行文件，该文件将匹配 <a href="#hooks-entry"><code>entry</code></a> —— 通常是通过 <code>setup.py</code> 中的 <code>console_scripts</code> 或 <code>scripts</code>。</p>
+<p>这种语言还支持 <code>additional_dependencies</code>，因此它可以与 <a href="../advanced/#本地仓库钩子">local</a> 钩子一起使用。指定的依赖项将被追加到 <code>pip install</code> 命令中。</p>
+<p>支持情况：python 钩子不需要任何系统级依赖项即可工作。它已在 Linux、macOS、Windows 和 cygwin 上进行了测试。</p>
+</div>
+<div class="tabbed-block">
+<p>The hook repository must be installable via <code>pip install .</code> (usually by either
+<code>setup.py</code> or <code>pyproject.toml</code>).  The installed package will provide an
+executable that will match the <a href="#hooks-entry"><code>entry</code></a> – usually through <code>console_scripts</code> or
+<code>scripts</code> in setup.py.</p>
+<p>This language also supports <code>additional_dependencies</code>
+so it can be used with <a href="../advanced/#本地仓库钩子">local</a> hooks.
+The specified dependencies will be appended to the <code>pip install</code> command.</p>
+<p><strong>Support:</strong> python hooks work without any system-level dependencies.  It
+has been tested on linux, macOS, windows, and cygwin.</p>
+</div>
+</div>
+</div>
+<h3 id="python_venv">python_venv<a class="headerlink" href="#python_venv" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="17:2"><input checked="checked" id="__tabbed_17_1" name="__tabbed_17" type="radio" /><input id="__tabbed_17_2" name="__tabbed_17" type="radio" /><div class="tabbed-labels"><label for="__tabbed_17_1">中文</label><label for="__tabbed_17_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>新特性 2.4.0：</p>
+<p><code>python_venv</code> 语言现在是 <code>python</code> 的别名，因为 <code>virtualenv&gt;=20</code> 创建的结构相同的环境。以前，这个 <a href="#hooks-language"><code>language</code></a> 使用 <a href="https://docs.python.org/3/library/venv.html">venv</a> 模块创建环境。</p>
+<p>这个 <a href="#hooks-language"><code>language</code></a> 将最终被移除，因此建议使用 <code>python</code>。</p>
+<p>支持情况：python 钩子不需要任何系统级依赖项即可工作。它已在 Linux、macOS、Windows 和 cygwin 上进行了测试。</p>
+</div>
+<div class="tabbed-block">
+<p><em>new in 2.4.0</em>: The <code>python_venv</code> language is now an alias to <code>python</code> since
+<code>virtualenv&gt;=20</code> creates equivalently structured environments.  Previously,
+this <a href="#hooks-language"><code>language</code></a> created environments using the <a href="https://docs.python.org/3/library/venv.html">venv</a> module.</p>
+<p>This <a href="#hooks-language"><code>language</code></a> will be removed eventually so it is suggested to use <code>python</code>
+instead.</p>
+<p><strong>Support:</strong> python hooks work without any system-level dependencies.  It
+has been tested on linux, macOS, windows, and cygwin.</p>
+</div>
+</div>
+</div>
+<h3 id="r">r<a class="headerlink" href="#r" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="18:2"><input checked="checked" id="__tabbed_18_1" name="__tabbed_18" type="radio" /><input id="__tabbed_18_2" name="__tabbed_18" type="radio" /><div class="tabbed-labels"><label for="__tabbed_18_1">中文</label><label for="__tabbed_18_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>新特性 2.11.0：</p>
+<p>这个钩子仓库必须包含一个 <code>renv.lock</code> 文件，该文件将在钩子安装时通过 <a href="https://rstudio.github.io/renv/reference/restore.html"><code>renv::restore()</code></a> 恢复。如果仓库是一个 R 包（即在 <code>DESCRIPTION</code> 中有 <code>Type: Package</code>），它将被安装。在 <a href="#hooks-entry"><code>entry</code></a> 中支持的语法是 <code>Rscript -e {expression}</code> 或 <code>Rscript path/relative/to/hook/root</code>。跳过 R 启动进程（模拟 <code>--vanilla</code>），因为所有配置应通过 <a href="#hooks-args"><code>args</code></a> 公开，以实现最大透明度和可移植性。</p>
+<p>当为 R 指定 <a href="../plugins/#config-additional_dependencies"><code>additional_dependencies</code></a> 时，您可以使用任何 <a href="https://rstudio.github.io/renv/reference/install.html#examples"><code>renv::install()</code></a> 理解的安装参数格式。</p>
+<p>支持情况：只要安装了 <a href="https://www.r-project.org"><code>R</code></a> 并在 <code>PATH</code> 上，<code>r</code> 钩子就可以工作。它已在 Linux、macOS 和 Windows 上进行了测试。</p>
+</div>
+<div class="tabbed-block">
+<p><em>new in 2.11.0</em></p>
+<p>This hook repository must have a <code>renv.lock</code> file that will be restored with
+<a href="https://rstudio.github.io/renv/reference/restore.html"><code>renv::restore()</code></a> on
+hook installation. If the repository is an R package (i.e. has <code>Type: Package</code>
+in <code>DESCRIPTION</code>), it is installed. The supported syntax in <a href="#hooks-entry"><code>entry</code></a> is
+<code>Rscript -e {expression}</code> or <code>Rscript path/relative/to/hook/root</code>. The
+R Startup process is skipped (emulating <code>--vanilla</code>), as all configuration
+should be exposed via <a href="#hooks-args"><code>args</code></a> for maximal transparency and portability.</p>
+<p>When specifying <a href="../plugins/#config-additional_dependencies"><code>additional_dependencies</code></a>
+for R, you can use any of the install argument formats understood by
+<a href="https://rstudio.github.io/renv/reference/install.html#examples"><code>renv::install()</code></a>.</p>
+<p><strong>Support:</strong> <code>r</code> hooks work as long as <a href="https://www.r-project.org"><code>R</code></a> is
+installed and on <code>PATH</code>. It has been tested on linux, macOS, and windows.</p>
+</div>
+</div>
+</div>
+<h3 id="ruby">ruby<a class="headerlink" href="#ruby" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="19:2"><input checked="checked" id="__tabbed_19_1" name="__tabbed_19" type="radio" /><input id="__tabbed_19_2" name="__tabbed_19" type="radio" /><div class="tabbed-labels"><label for="__tabbed_19_1">中文</label><label for="__tabbed_19_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>钩子仓库必须包含一个 <code>*.gemspec</code> 文件。它将通过 <code>gem build *.gemspec &amp;&amp; gem install *.gem</code> 进行安装。安装的包将生成一个可执行文件，该文件将匹配 <a href="#hooks-entry"><code>entry</code></a> —— 通常是通过你在 gemspec 中的 <code>executables</code> 指定的。</p>
+<p>支持情况：ruby 钩子不需要任何系统级依赖项即可工作。它已在 Linux 和 macOS 上进行了测试，并且可能在 cygwin 下也能工作。</p>
+</div>
+<div class="tabbed-block">
+<p>The hook repository must have a <code>*.gemspec</code>.  It will be installed via
+<code>gem build *.gemspec &amp;&amp; gem install *.gem</code>.  The installed package will
+produce an executable that will match the <a href="#hooks-entry"><code>entry</code></a> – usually through
+<code>executables</code> in your gemspec.</p>
+<p><strong>Support:</strong> ruby hooks work without any system-level dependencies.  It has
+been tested on linux and macOS and <em>may</em> work under cygwin.</p>
+</div>
+</div>
+</div>
+<h3 id="rust">rust<a class="headerlink" href="#rust" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="20:2"><input checked="checked" id="__tabbed_20_1" name="__tabbed_20" type="radio" /><input id="__tabbed_20_2" name="__tabbed_20" type="radio" /><div class="tabbed-labels"><label for="__tabbed_20_1">中文</label><label for="__tabbed_20_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Rust 钩子使用 <a href="https://github.com/rust-lang/cargo">Cargo</a>，Rust 的官方包管理器进行安装。</p>
+<p>钩子仓库必须包含一个 <code>Cargo.toml</code> 文件，该文件至少生成一个二进制文件（例如：<a href="https://github.com/chriskuehl/example-rust-pre-commit-hook">example-rust-pre-commit-hook</a>），其名称应与钩子的 <a href="#hooks-entry"><code>entry</code></a> 定义匹配。仓库将通过 <code>cargo install --bins</code> 进行安装（二进制文件存储在 pre-commit 缓存中，不会污染您的用户级 Cargo 安装）。</p>
+<p>当为 Rust 指定 <a href="../plugins/#config-additional_dependencies"><code>additional_dependencies</code></a> 时，您可以使用语法 <code>{package_name}:{package_version}</code> 来指定一个新的库依赖项（用于构建 <em>你的</em> 钩子仓库），或者使用特殊语法 <code>cli:{package_name}:{package_version}</code> 用于 CLI 依赖项（单独构建，其生成的二进制文件可供钩子使用）。</p>
+<p>新特性 2.21.0：如果未安装，pre-commit 将引导安装 <code>rust</code>。<code>language: rust</code> 现在还支持 <code>language_version</code>。</p>
+<p>支持情况：它已在 Linux、Windows 和 macOS 上进行了测试。</p>
+</div>
+<div class="tabbed-block">
+<p>Rust hooks are installed using <a href="https://github.com/rust-lang/cargo">Cargo</a>,
+Rust's official package manager.</p>
+<p>Hook repositories must have a <code>Cargo.toml</code> file which produces at least one
+binary (<a href="https://github.com/chriskuehl/example-rust-pre-commit-hook">example</a>),
+whose name should match the <a href="#hooks-entry"><code>entry</code></a> definition for your hook. The repo will be
+installed via <code>cargo install --bins</code> (with the binaries stored in your
+pre-commit cache, not polluting your user-level Cargo installations).</p>
+<p>When specifying <a href="../plugins/#config-additional_dependencies"><code>additional_dependencies</code></a> for Rust, you can use the syntax
+<code>{package_name}:{package_version}</code> to specify a new library dependency (used to
+build <em>your</em> hook repo), or the special syntax
+<code>cli:{package_name}:{package_version}</code> for a CLI dependency (built separately,
+with binaries made available for use by hooks).</p>
+<p><em>new in 2.21.0</em>: pre-commit will bootstrap <code>rust</code> if it is not present.
+<code>language: rust</code> also now supports <code>language_version</code></p>
+<p><strong>Support:</strong> It has been tested on linux, Windows, and macOS.</p>
+</div>
+</div>
+</div>
+<h3 id="swift">swift<a class="headerlink" href="#swift" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="21:2"><input checked="checked" id="__tabbed_21_1" name="__tabbed_21" type="radio" /><input id="__tabbed_21_2" name="__tabbed_21" type="radio" /><div class="tabbed-labels"><label for="__tabbed_21_1">中文</label><label for="__tabbed_21_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>钩子仓库必须包含一个 <code>Package.swift</code> 文件。它将通过 <code>swift build -c release</code> 进行安装。<a href="#hooks-entry"><code>entry</code></a> 应该匹配构建仓库时创建的可执行文件。</p>
+<p>支持情况：已知 swift 钩子可以在安装了 swift 的任何系统上工作。它已在 Linux 和 macOS 上进行了测试。</p>
+</div>
+<div class="tabbed-block">
+<p>The hook repository must have a <code>Package.swift</code>.  It will be installed via
+<code>swift build -c release</code>.  The <a href="#hooks-entry"><code>entry</code></a> should match an executable created by
+building the repository.</p>
+<p><strong>Support:</strong> swift hooks are known to work on any system which has swift
+installed.  It has been tested on linux and macOS.</p>
+</div>
+</div>
+</div>
+<h3 id="pygrep">pygrep<a class="headerlink" href="#pygrep" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="22:2"><input checked="checked" id="__tabbed_22_1" name="__tabbed_22" type="radio" /><input id="__tabbed_22_2" name="__tabbed_22" type="radio" /><div class="tabbed-labels"><label for="__tabbed_22_1">中文</label><label for="__tabbed_22_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>跨平台的 Python 实现 <code>grep</code> —— pygrep 钩子是编写简单钩子的快速方法，通过文件匹配防止提交。将正则表达式指定为 <a href="#hooks-entry"><code>entry</code></a>。<a href="#hooks-entry"><code>entry</code></a> 可以是任何 Python <a href="../advanced/#正则表达式">正则表达式</a>。对于不区分大小写的正则表达式，可以在条目的开头使用 <code>(?i)</code> 标志，或者使用 <code>args: [-i]</code>。</p>
+<p>对于多行匹配，请使用 <code>args: [--multiline]</code>。</p>
+<p>新特性 2.8.0：要要求所有文件匹配，请使用 <code>args: [--negate]</code>。</p>
+<p>支持情况：pygrep 钩子支持 pre-commit 运行的所有平台。</p>
+</div>
+<div class="tabbed-block">
+<p>A cross-platform python implementation of <code>grep</code> – pygrep hooks are a quick
+way to write a simple hook which prevents commits by file matching.  Specify
+the regex as the <a href="#hooks-entry"><code>entry</code></a>.  The <a href="#hooks-entry"><code>entry</code></a> may be any python
+<a href="../advanced/#正则表达式">regular expression</a>.  For case insensitive regexes you
+can apply the <code>(?i)</code> flag as the start of your entry, or use <code>args: [-i]</code>.</p>
+<p>For multiline matches, use <code>args: [--multiline]</code>.</p>
+<p><em>new in 2.8.0</em>: To require all files to match, use <code>args: [--negate]</code>.</p>
+<p><strong>Support:</strong> pygrep hooks are supported on all platforms which pre-commit runs
+on.</p>
+</div>
+</div>
+</div>
+<h3 id="script">script<a class="headerlink" href="#script" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="23:2"><input checked="checked" id="__tabbed_23_1" name="__tabbed_23" type="radio" /><input id="__tabbed_23_2" name="__tabbed_23" type="radio" /><div class="tabbed-labels"><label for="__tabbed_23_1">中文</label><label for="__tabbed_23_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>脚本钩子提供了一种编写验证文件的简单脚本的方法。<a href="#hooks-entry"><code>entry</code></a> 应该是相对于钩子仓库根目录的路径。</p>
+<p>这种类型的钩子不会提供一个虚拟环境来工作——如果它需要额外的依赖项，使用者必须手动安装它们。</p>
+<p>支持情况：脚本钩子的支持取决于脚本本身。</p>
+</div>
+<div class="tabbed-block">
+<p>Script hooks provide a way to write simple scripts which validate files. The
+<a href="#hooks-entry"><code>entry</code></a> should be a path relative to the root of the hook repository.</p>
+<p>This hook type will not be given a virtual environment to work with – if it
+needs additional dependencies the consumer must install them manually.</p>
+<p><strong>Support:</strong> the support of script hooks depend on the scripts themselves.</p>
+</div>
+</div>
+</div>
+<h3 id="system">system<a class="headerlink" href="#system" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="24:2"><input checked="checked" id="__tabbed_24_1" name="__tabbed_24" type="radio" /><input id="__tabbed_24_2" name="__tabbed_24" type="radio" /><div class="tabbed-labels"><label for="__tabbed_24_1">中文</label><label for="__tabbed_24_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>系统钩子提供了一种编写系统级可执行文件钩子的方法，这些可执行文件在上面没有支持的语言（或者有特殊的环境要求，不允许它们独立运行，例如 pylint）。</p>
+<p>这种类型的钩子不会提供一个虚拟环境来工作——如果它需要额外的依赖项，使用者必须手动安装它们。</p>
+<p>支持情况：系统钩子的支持取决于可执行文件本身。</p>
+</div>
+<div class="tabbed-block">
+<p>System hooks provide a way to write hooks for system-level executables which
+don't have a supported language above (or have special environment
+requirements that don't allow them to run in isolation such as pylint).</p>
+<p>This hook type will not be given a virtual environment to work with – if it
+needs additional dependencies the consumer must install them manually.</p>
+<p><strong>Support:</strong> the support of system hooks depend on the executables.</p>
+</div>
+</div>
+</div>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年9月24日</span>
+      
+        <br>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年9月24日</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["header.autohide", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "content.tabs.link", "content.code.copy", "content.tooltips", "navigation.indexes", "navigation.prune", "navigation.instant"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.94c44541.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

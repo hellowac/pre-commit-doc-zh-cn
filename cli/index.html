@@ -1,0 +1,1413 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="hellowac pre-commit 预提交处理，中文文档">
+      
+      
+      
+      
+        <link rel="prev" href="../new-hooks/">
+      
+      
+        <link rel="next" href="../advanced/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.4">
+    
+    
+      
+        <title>命令行接口 - pre-commimt</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bd3936ea.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#命令行接口" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+你当前浏览的版本已不是最新版本，
+<a href="../..">
+    <strong>点击这里</strong>
+</a>查看最新版本的文档
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),outdated=__md_get("__outdated",sessionStorage);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="pre-commimt" class="md-header__button md-logo" aria-label="pre-commimt" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            pre-commimt
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              命令行接口
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/hellowac/pre-commit-doc-zh-cn" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hellowac/pre-commit-doc-zh-cn
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  欢迎来到pre-commmit文档!
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../intro/" class="md-tabs__link">
+          
+  
+    
+  
+  文档
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hooks/" class="md-tabs__link">
+        
+  
+    
+  
+  支持的钩子
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/pre-commit/demo-repo#readme" class="md-tabs__link">
+        
+  
+    
+  
+  样例
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="pre-commimt" class="md-nav__button md-logo" aria-label="pre-commimt" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    pre-commimt
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/hellowac/pre-commit-doc-zh-cn" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hellowac/pre-commit-doc-zh-cn
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    欢迎来到pre-commmit文档!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    文档
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            文档
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    配置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../new-hooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    创建新钩子
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    命令行接口
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    命令行接口
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-autoupdate-options" class="md-nav__link">
+    pre-commit autoupdate [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-clean-options" class="md-nav__link">
+    pre-commit clean [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-gc-options" class="md-nav__link">
+    pre-commit gc [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-init-templatedir-directory-options" class="md-nav__link">
+    pre-commit init-templatedir DIRECTORY [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-install-options" class="md-nav__link">
+    pre-commit install [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-install-hooks-options" class="md-nav__link">
+    pre-commit install-hooks [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-migrate-config-options" class="md-nav__link">
+    pre-commit migrate-config [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-run-hook-id" class="md-nav__link">
+    pre-commit run hook-id
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-sample-config-options" class="md-nav__link">
+    pre-commit sample-config [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-try-repo-repo-options" class="md-nav__link">
+    pre-commit try-repo REPO [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-uninstall-options" class="md-nav__link">
+    pre-commit uninstall [options]
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    高级功能
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    贡献
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    支持的钩子
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/pre-commit/demo-repo#readme" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    样例
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-autoupdate-options" class="md-nav__link">
+    pre-commit autoupdate [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-clean-options" class="md-nav__link">
+    pre-commit clean [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-gc-options" class="md-nav__link">
+    pre-commit gc [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-init-templatedir-directory-options" class="md-nav__link">
+    pre-commit init-templatedir DIRECTORY [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-install-options" class="md-nav__link">
+    pre-commit install [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-install-hooks-options" class="md-nav__link">
+    pre-commit install-hooks [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-migrate-config-options" class="md-nav__link">
+    pre-commit migrate-config [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-run-hook-id" class="md-nav__link">
+    pre-commit run hook-id
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-sample-config-options" class="md-nav__link">
+    pre-commit sample-config [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-try-repo-repo-options" class="md-nav__link">
+    pre-commit try-repo REPO [options]
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-commit-uninstall-options" class="md-nav__link">
+    pre-commit uninstall [options]
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="命令行接口">命令行接口<a class="headerlink" href="#命令行接口" title="Permanent link">&para;</a></h1>
+<p><strong>Command line interface</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">中文</label><label for="__tabbed_1_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>所有 pre-commit 命令都接受以下选项：</p>
+<ul>
+<li><code>--color {auto,always,never}</code>：是否在输出中使用颜色。默认为 <code>auto</code>。可以通过使用 <code>PRE_COMMIT_COLOR={auto,always,never}</code> 覆盖，或者通过使用 <code>TERM=dumb</code> 禁用颜色。</li>
+<li><code>-c CONFIG</code>, <code>--config CONFIG</code>：指向替代配置文件的路径。</li>
+<li><code>-h</code>, <code>--help</code>：显示帮助和可用选项。</li>
+</ul>
+<p>新特性 2.8.0：<code>pre-commit</code> 现在使用更具体的退出代码：
+- <code>1</code>：检测到的/预期的错误
+- <code>3</code>：意外的错误
+- <code>130</code>：进程被 <code>^C</code> 中断</p>
+</div>
+<div class="tabbed-block">
+<p>All pre-commit commands take the following options:</p>
+<ul>
+<li><code>--color {auto,always,never}</code>: whether to use color in output.
+  Defaults to <code>auto</code>.  can be overridden by using
+  <code>PRE_COMMIT_COLOR={auto,always,never}</code> or disabled using <code>TERM=dumb</code>.</li>
+<li><code>-c CONFIG</code>, <code>--config CONFIG</code>: path to alternate config file</li>
+<li><code>-h</code>, <code>--help</code>: show help and available options.</li>
+</ul>
+<p><em>new in 2.8.0</em>: <code>pre-commit</code> now exits with more specific codes:
+- <code>1</code>: a detected / expected error
+- <code>3</code>: an unexpected error
+- <code>130</code>: the process was interrupted by <code>^C</code></p>
+</div>
+</div>
+</div>
+<h2 id="pre-commit-autoupdate-options">pre-commit autoupdate [options]<a class="headerlink" href="#pre-commit-autoupdate-options" title="Permanent link">&para;</a></h2>
+<p><span id="pre-commit-autoupdate"></span></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">中文</label><label for="__tabbed_2_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>自动更新 pre-commit 配置到仓库的最新版本。</p>
+<p>选项：</p>
+<ul>
+<li><code>--bleeding-edge</code>：更新到默认分支的最新开发版本，而不是最新的已标记版本（默认行为）。</li>
+<li><code>--freeze</code>：在 <a href="../plugins/#repos-rev"><code>rev</code></a> 中存储“冻结”的哈希值，而不是标签名称。</li>
+<li><code>--repo REPO</code>：只更新这个仓库。这个选项可以多次指定。</li>
+<li><code>-j</code> / <code>--jobs</code>：<em>3.3.0 版本新增</em> 要使用的线程数量（默认：1）。</li>
+</ul>
+<p>以下是使用 <code>.pre-commit-config.yaml</code> 的一些示例调用：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">repos</span>:
+-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/pre-commit/pre-commit-hooks<span style="color: #bbbbbb"> </span>
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>v2.1.0
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>trailing-whitespace
+-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/asottile/pyupgrade<span style="color: #bbbbbb"> </span>
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>v1.25.0
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>pyupgrade
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">args</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">--py36-plus</span>]
+</code></pre></div>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>:<span style="color: #bbbbbb"> </span>默认：更新到默认分支的最新标签
+<span style="color: #000080; font-weight: bold">$ </span>pre-commit<span style="color: #bbbbbb"> </span>autoupdate<span style="color: #bbbbbb">  </span><span style="color: #3D7B7B; font-style: italic"># 默认：选择标签</span>
+<span style="color: #717171">Updating https://github.com/pre-commit/pre-commit-hooks  ... updating v2.1.0 -&gt; v2.4.0.</span>
+<span style="color: #717171">Updating https://github.com/asottile/pyupgrade  ... updating v1.25.0 -&gt; v1.25.2.</span>
+<span style="color: #000080; font-weight: bold">$ </span>grep<span style="color: #bbbbbb"> </span>rev:<span style="color: #bbbbbb"> </span>.pre-commit-config.yaml
+<span style="color: #717171">    rev: v2.4.0</span>
+<span style="color: #717171">    rev: v1.25.2</span>
+</code></pre></div>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>:<span style="color: #bbbbbb"> </span>更新特定仓库到默认分支的最新修订版
+<span style="color: #000080; font-weight: bold">$ </span>pre-commit<span style="color: #bbbbbb"> </span>autoupdate<span style="color: #bbbbbb"> </span>--bleeding-edge<span style="color: #bbbbbb"> </span>--repo<span style="color: #bbbbbb"> </span>https://github.com/pre-commit/pre-commit-hooks<span style="color: #bbbbbb"> </span>
+<span style="color: #717171">Updating https://github.com/pre-commit/pre-commit-hooks  ... updating v2.1.0 -&gt; 5df1a4bf6f04a1ed3a643167b38d502575e29aef.</span>
+<span style="color: #000080; font-weight: bold">$ </span>grep<span style="color: #bbbbbb"> </span>rev:<span style="color: #bbbbbb"> </span>.pre-commit-config.yaml
+<span style="color: #717171">    rev: 5df1a4bf6f04a1ed3a643167b38d502575e29aef</span>
+<span style="color: #717171">    rev: v1.25.0</span>
+</code></pre></div>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>:<span style="color: #bbbbbb"> </span>更新到冻结版本
+<span style="color: #000080; font-weight: bold">$ </span>pre-commit<span style="color: #bbbbbb"> </span>autoupdate<span style="color: #bbbbbb"> </span>--freeze
+<span style="color: #717171">Updating https://github.com/pre-commit/pre-commit-hooks  ... updating v2.1.0 -&gt; v2.4.0 (frozen).</span>
+<span style="color: #717171">Updating https://github.com/asottile/pyupgrade  ... updating v1.25.0 -&gt; v1.25.2 (frozen).</span>
+<span style="color: #000080; font-weight: bold">$ </span>grep<span style="color: #bbbbbb"> </span>rev:<span style="color: #bbbbbb"> </span>.pre-commit-config.yaml
+<span style="color: #717171">    rev: 0161422b4e09b47536ea13f49e786eb3616fe0d7  # 冻结：v2.4.0</span>
+<span style="color: #717171">    rev: 34a269fd7650d264e4de7603157c10d0a9bb8211  # 冻结：v1.25.2</span>
+</code></pre></div>
+<p>新特性 2.18.0：如果存在并列情况，pre-commit 将优先选择包含 <code>.</code> 的标签。</p>
+</div>
+<div class="tabbed-block">
+<p>Auto-update pre-commit config to the latest repos' versions.</p>
+<p>Options:</p>
+<ul>
+<li><code>--bleeding-edge</code>: update to the bleeding edge of the default branch instead
+  of the latest tagged version (the default behaviour).</li>
+<li><code>--freeze</code>: Store "frozen" hashes in <a href="../plugins/#repos-rev"><code>rev</code></a> instead of tag names.</li>
+<li><code>--repo REPO</code>: Only update this repository. This option may be specified
+  multiple times.</li>
+<li><code>-j</code> / <code>--jobs</code>: <em>new in 3.3.0</em> Number of threads to use (default: 1).</li>
+</ul>
+<p>Here are some sample invocations using this <code>.pre-commit-config.yaml</code>:</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">repos</span>:
+-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/pre-commit/pre-commit-hooks
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>v2.1.0
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>trailing-whitespace
+-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/asottile/pyupgrade
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>v1.25.0
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>pyupgrade
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">args</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">--py36-plus</span>]
+</code></pre></div>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>:<span style="color: #bbbbbb"> </span>default:<span style="color: #bbbbbb"> </span>update<span style="color: #bbbbbb"> </span>to<span style="color: #bbbbbb"> </span>latest<span style="color: #bbbbbb"> </span>tag<span style="color: #bbbbbb"> </span>on<span style="color: #bbbbbb"> </span>default<span style="color: #bbbbbb"> </span>branch
+<span style="color: #000080; font-weight: bold">$ </span>pre-commit<span style="color: #bbbbbb"> </span>autoupdate<span style="color: #bbbbbb">  </span><span style="color: #3D7B7B; font-style: italic"># by default: pick tags</span>
+<span style="color: #717171">Updating https://github.com/pre-commit/pre-commit-hooks ... updating v2.1.0 -&gt; v2.4.0.</span>
+<span style="color: #717171">Updating https://github.com/asottile/pyupgrade ... updating v1.25.0 -&gt; v1.25.2.</span>
+<span style="color: #000080; font-weight: bold">$ </span>grep<span style="color: #bbbbbb"> </span>rev:<span style="color: #bbbbbb"> </span>.pre-commit-config.yaml
+<span style="color: #717171">    rev: v2.4.0</span>
+<span style="color: #717171">    rev: v1.25.2</span>
+</code></pre></div>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>:<span style="color: #bbbbbb"> </span>update<span style="color: #bbbbbb"> </span>a<span style="color: #bbbbbb"> </span>specific<span style="color: #bbbbbb"> </span>repository<span style="color: #bbbbbb"> </span>to<span style="color: #bbbbbb"> </span>the<span style="color: #bbbbbb"> </span>latest<span style="color: #bbbbbb"> </span>revision<span style="color: #bbbbbb"> </span>of<span style="color: #bbbbbb"> </span>the<span style="color: #bbbbbb"> </span>default<span style="color: #bbbbbb"> </span>branch
+<span style="color: #000080; font-weight: bold">$ </span>pre-commit<span style="color: #bbbbbb"> </span>autoupdate<span style="color: #bbbbbb"> </span>--bleeding-edge<span style="color: #bbbbbb"> </span>--repo<span style="color: #bbbbbb"> </span>https://github.com/pre-commit/pre-commit-hooks
+<span style="color: #717171">Updating https://github.com/pre-commit/pre-commit-hooks ... updating v2.1.0 -&gt; 5df1a4bf6f04a1ed3a643167b38d502575e29aef.</span>
+<span style="color: #000080; font-weight: bold">$ </span>grep<span style="color: #bbbbbb"> </span>rev:<span style="color: #bbbbbb"> </span>.pre-commit-config.yaml
+<span style="color: #717171">    rev: 5df1a4bf6f04a1ed3a643167b38d502575e29aef</span>
+<span style="color: #717171">    rev: v1.25.0</span>
+</code></pre></div>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>:<span style="color: #bbbbbb"> </span>update<span style="color: #bbbbbb"> </span>to<span style="color: #bbbbbb"> </span>frozen<span style="color: #bbbbbb"> </span>versions
+<span style="color: #000080; font-weight: bold">$ </span>pre-commit<span style="color: #bbbbbb"> </span>autoupdate<span style="color: #bbbbbb"> </span>--freeze
+<span style="color: #717171">Updating https://github.com/pre-commit/pre-commit-hooks ... updating v2.1.0 -&gt; v2.4.0 (frozen).</span>
+<span style="color: #717171">Updating https://github.com/asottile/pyupgrade ... updating v1.25.0 -&gt; v1.25.2 (frozen).</span>
+<span style="color: #000080; font-weight: bold">$ </span>grep<span style="color: #bbbbbb"> </span>rev:<span style="color: #bbbbbb"> </span>.pre-commit-config.yaml
+<span style="color: #717171">    rev: 0161422b4e09b47536ea13f49e786eb3616fe0d7  # frozen: v2.4.0</span>
+<span style="color: #717171">    rev: 34a269fd7650d264e4de7603157c10d0a9bb8211  # frozen: v1.25.2</span>
+</code></pre></div>
+<p><em>new in 2.18.0</em>: pre-commit will preferentially pick tags containing a <code>.</code> if
+there are ties.</p>
+</div>
+</div>
+</div>
+<h2 id="pre-commit-clean-options">pre-commit clean [options]<a class="headerlink" href="#pre-commit-clean-options" title="Permanent link">&para;</a></h2>
+<p><span id="pre-commit-clean"></span></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">中文</label><label for="__tabbed_3_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>清理缓存的 pre-commit 文件。</p>
+<p>选项：（无其他选项）</p>
+</div>
+<div class="tabbed-block">
+<p>Clean out cached pre-commit files.</p>
+<p>Options: (no additional options)</p>
+</div>
+</div>
+</div>
+<h2 id="pre-commit-gc-options">pre-commit gc [options]<a class="headerlink" href="#pre-commit-gc-options" title="Permanent link">&para;</a></h2>
+<p><span id="pre-commit-gc"></span></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">中文</label><label for="__tabbed_4_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>清理未使用的缓存仓库。</p>
+<p><code>pre-commit</code> 会保留已安装钩子仓库的缓存，随着时间的推移，这个缓存会不断增长。可以定期运行此命令以清理缓存目录中未使用的仓库。</p>
+<p>选项：（无其他选项）</p>
+</div>
+<div class="tabbed-block">
+<p>Clean unused cached repos.</p>
+<p><code>pre-commit</code> keeps a cache of installed hook repositories which grows over
+time.  This command can be run periodically to clean out unused repos from
+the cache directory.</p>
+<p>Options: (no additional options)</p>
+</div>
+</div>
+</div>
+<h2 id="pre-commit-init-templatedir-directory-options">pre-commit init-templatedir DIRECTORY [options]<a class="headerlink" href="#pre-commit-init-templatedir-directory-options" title="Permanent link">&para;</a></h2>
+<p><span id="pre-commit-init-templatedir"></span></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">中文</label><label for="__tabbed_5_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>在用于与 <code>git config init.templateDir</code> 一起使用的目录中安装钩子脚本。</p>
+<p>选项：</p>
+<ul>
+<li><code>-t HOOK_TYPE, --hook-type HOOK_TYPE</code>：要安装的钩子类型。</li>
+</ul>
+<p>一些示例调用：</p>
+<div class="language-bash highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>git<span style="color: #bbbbbb"> </span>config<span style="color: #bbbbbb"> </span>--global<span style="color: #bbbbbb"> </span>init.templateDir<span style="color: #bbbbbb"> </span>~/.git-template
+pre-commit<span style="color: #bbbbbb"> </span>init-templatedir<span style="color: #bbbbbb"> </span>~/.git-template
+</code></pre></div>
+<p>对于 Windows cmd.exe 使用 <code>%HOMEPATH%</code> 而不是 <code>~</code>：</p>
+<div class="language-batch highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>pre-commit init-templatedir <span style="color: #19177C">%HOMEPATH%</span>\.git-template
+</code></pre></div>
+<p>对于 Windows PowerShell 使用 <code>$HOME</code> 而不是 <code>~</code>：</p>
+<div class="language-powershell highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>pre-commit init-templatedir <span style="color: #19177C">$HOME</span>\.git-template
+</code></pre></div>
+<p>现在，无论何时克隆或创建仓库，它都会预先设置好钩子！</p>
+</div>
+<div class="tabbed-block">
+<p>Install hook script in a directory intended for use with
+<code>git config init.templateDir</code>.</p>
+<p>Options:</p>
+<ul>
+<li><code>-t HOOK_TYPE, --hook-type HOOK_TYPE</code>:
+  which hook type to install.</li>
+</ul>
+<p>Some example useful invocations:</p>
+<div class="language-bash highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>git<span style="color: #bbbbbb"> </span>config<span style="color: #bbbbbb"> </span>--global<span style="color: #bbbbbb"> </span>init.templateDir<span style="color: #bbbbbb"> </span>~/.git-template
+pre-commit<span style="color: #bbbbbb"> </span>init-templatedir<span style="color: #bbbbbb"> </span>~/.git-template
+</code></pre></div>
+<p>For Windows cmd.exe use <code>%HOMEPATH%</code> instead of <code>~</code>:</p>
+<div class="language-batch highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>pre-commit init-templatedir <span style="color: #19177C">%HOMEPATH%</span>\.git-template
+</code></pre></div>
+<p>For Windows PowerShell use <code>$HOME</code> instead of <code>~</code>:</p>
+<div class="language-powershell highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>pre-commit init-templatedir <span style="color: #19177C">$HOME</span>\.git-template
+</code></pre></div>
+<p>Now whenever a repository is cloned or created, it will have the hooks set up
+already!</p>
+</div>
+</div>
+</div>
+<h2 id="pre-commit-install-options">pre-commit install [options]<a class="headerlink" href="#pre-commit-install-options" title="Permanent link">&para;</a></h2>
+<p><span id="pre-commit-install"></span></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">中文</label><label for="__tabbed_6_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>安装 pre-commit 脚本。</p>
+<p>选项：</p>
+<ul>
+<li><code>-f</code>, <code>--overwrite</code>：用 pre-commit 脚本替换任何现有的 git 钩子。</li>
+<li><code>--install-hooks</code>：现在就安装所有可用钩子的环境（而不是在它们第一次执行时）。参见 <a href="#pre-commit-install-hooks"><code>pre-commit install-hooks</code></a>。</li>
+<li><code>-t HOOK_TYPE, --hook-type HOOK_TYPE</code>：指定要安装的钩子类型。</li>
+<li><code>--allow-missing-config</code>：如果配置文件缺失，钩子脚本将允许这种情况。</li>
+</ul>
+<p>一些示例调用：</p>
+<ul>
+<li><code>pre-commit install</code>：默认调用。在任何现有的 git 钩子旁安装钩子脚本。</li>
+<li><code>pre-commit install --install-hooks --overwrite</code>：用 pre-commit 替换现有的 git 钩子脚本，并且安装钩子环境。</li>
+</ul>
+<p>新特性 2.18.0：如果命令行上没有指定 <code>--hook-type</code>，<code>pre-commit install</code> 现在将从 <a href="../plugins/#top_level-default_install_hook_types"><code>default_install_hook_types</code></a> 安装钩子。</p>
+</div>
+<div class="tabbed-block">
+<p>Install the pre-commit script.</p>
+<p>Options:</p>
+<ul>
+<li><code>-f</code>, <code>--overwrite</code>: Replace any existing git hooks with the pre-commit
+  script.</li>
+<li><code>--install-hooks</code>: Also install environments for all available hooks now
+  (rather than when they are first executed). See <a href="#pre-commit-install-hooks"><code>pre-commit
+  install-hooks</code></a>.</li>
+<li><code>-t HOOK_TYPE, --hook-type HOOK_TYPE</code>:
+  Specify which hook type to install.</li>
+<li><code>--allow-missing-config</code>: Hook scripts will permit a missing configuration
+  file.</li>
+</ul>
+<p>Some example useful invocations:</p>
+<ul>
+<li><code>pre-commit install</code>: Default invocation. Installs the hook scripts
+   alongside any existing git hooks.</li>
+<li><code>pre-commit install --install-hooks --overwrite</code>: Idempotently replaces
+   existing git hook scripts with pre-commit, and also installs hook
+   environments.</li>
+</ul>
+<p><em>new in 2.18.0</em>: <code>pre-commit install</code> will now install hooks from
+<a href="../plugins/#top_level-default_install_hook_types"><code>default_install_hook_types</code></a> if
+<code>--hook-type</code> is not specified on the command line.</p>
+</div>
+</div>
+</div>
+<h2 id="pre-commit-install-hooks-options">pre-commit install-hooks [options]<a class="headerlink" href="#pre-commit-install-hooks-options" title="Permanent link">&para;</a></h2>
+<p><span id="pre-commit-install-hooks"></span></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">中文</label><label for="__tabbed_7_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>安装所有可用钩子的缺失环境。除非执行了此命令或 <code>install --install-hooks</code>，否则每个钩子的环境将在第一次调用钩子时创建。</p>
+<p>每个钩子都在适合其编写语言的独立环境中初始化。参见 <a href="../new-hooks/#支持的语言">支持的语言</a>。</p>
+<p>此命令不会安装 pre-commit 脚本。要在一个命令中安装脚本和钩子环境，请使用 <code>pre-commit install --install-hooks</code>。</p>
+<p>选项：（无其他选项）</p>
+</div>
+<div class="tabbed-block">
+<p>Install all missing environments for the available hooks. Unless this command or
+<code>install --install-hooks</code> is executed, each hook's environment is created the
+first time the hook is called.</p>
+<p>Each hook is initialized in a separate environment appropriate to the language
+the hook is written in. See <a href="../new-hooks/#支持的语言">supported languages</a>.</p>
+<p>This command does not install the pre-commit script. To install the script along with
+the hook environments in one command, use <code>pre-commit install --install-hooks</code>.</p>
+<p>Options: (no additional options)</p>
+</div>
+</div>
+</div>
+<h2 id="pre-commit-migrate-config-options">pre-commit migrate-config [options]<a class="headerlink" href="#pre-commit-migrate-config-options" title="Permanent link">&para;</a></h2>
+<p><span id="pre-commit-migrate-config"></span></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">中文</label><label for="__tabbed_8_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>迁移列表配置到新的映射配置格式。</p>
+<p>选项：（无其他选项）</p>
+</div>
+<div class="tabbed-block">
+<p>Migrate list configuration to the new map configuration format.</p>
+<p>Options: (no additional options)</p>
+</div>
+</div>
+</div>
+<h2 id="pre-commit-run-hook-id">pre-commit run [hook-id][options]<a class="headerlink" href="#pre-commit-run-hook-id" title="Permanent link">&para;</a></h2>
+<p><span id="pre-commit-run"></span></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">中文</label><label for="__tabbed_9_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>运行钩子。</p>
+<p>选项：</p>
+<ul>
+<li><code>[hook-id]</code>：指定单个 hook-id，只运行该钩子。</li>
+<li><code>-a</code>, <code>--all-files</code>：在仓库中的所有文件上运行。</li>
+<li><code>--files [FILES [FILES ...]]</code>：特定的文件名来运行钩子。</li>
+<li><code>--from-ref FROM_REF</code> + <code>--to-ref TO_REF</code>：在 git 中 <code>FROM_REF...TO_REF</code> 之间更改的文件上运行。</li>
+<li><em>2.2.0 版本新增</em>：在 2.2.0 版本之前参数为 <code>--source</code> 和 <code>--origin</code>。</li>
+<li><code>--hook-stage STAGE</code>：选择要运行的 <a href="../advanced/#限制钩子在某些阶段运行"><code>阶段</code></a>。</li>
+<li><code>--show-diff-on-failure</code>：当钩子失败时，立即运行 <code>git diff</code>。</li>
+<li><code>-v</code>, <code>--verbose</code>：无论成功与否都产生钩子输出。在输出中包含钩子 id。</li>
+</ul>
+<p>一些示例调用：
+- <code>pre-commit run</code>：这是提交时 pre-commit 默认运行的操作。这将对当前暂存的文件运行所有钩子。
+- <code>pre-commit run --all-files</code>：对所有文件运行所有钩子。如果您在 CI 中使用 pre-commit，这是一个有用的调用。
+- <code>pre-commit run flake8</code>：对所有暂存的文件运行 <code>flake8</code> 钩子。
+- <code>git ls-files -- '*.py' | xargs pre-commit run --files</code>：对仓库中所有的 <code>*.py</code> 文件运行所有钩子。
+- <code>pre-commit run --from-ref HEAD^^^ --to-ref HEAD</code>：对 <code>HEAD^^^</code> 和 <code>HEAD</code> 之间更改的文件运行。当在 pre-receive 钩子中使用时，这种形式很有用。</p>
+</div>
+<div class="tabbed-block">
+<p>Run hooks.</p>
+<p>Options:</p>
+<ul>
+<li><code>[hook-id]</code>: specify a single hook-id to run only that hook.</li>
+<li><code>-a</code>, <code>--all-files</code>: run on all the files in the repo.</li>
+<li><code>--files [FILES [FILES ...]]</code>: specific filenames to run hooks on.</li>
+<li><code>--from-ref FROM_REF</code> + <code>--to-ref TO_REF</code>: run against the files changed
+  between <code>FROM_REF...TO_REF</code> in git.<ul>
+<li><em>new in 2.2.0</em>: prior to 2.2.0 the arguments were <code>--source</code> and
+  <code>--origin</code>.</li>
+</ul>
+</li>
+<li><code>--hook-stage STAGE</code>: select a <a href="../advanced/#限制钩子在某些阶段运行"><code>stage</code> to run</a>.</li>
+<li><code>--show-diff-on-failure</code>: when hooks fail, run <code>git diff</code> directly afterward.</li>
+<li><code>-v</code>, <code>--verbose</code>: produce hook output independent of success.  Include hook
+  ids in output.</li>
+</ul>
+<p>Some example useful invocations:
+- <code>pre-commit run</code>: this is what pre-commit runs by default when committing.
+  This will run all hooks against currently staged files.
+- <code>pre-commit run --all-files</code>: run all the hooks against all the files.  This
+  is a useful invocation if you are using pre-commit in CI.
+- <code>pre-commit run flake8</code>: run the <code>flake8</code> hook against all staged files.
+- <code>git ls-files -- '*.py' | xargs pre-commit run --files</code>: run all hooks
+  against all <code>*.py</code> files in the repository.
+- <code>pre-commit run --from-ref HEAD^^^ --to-ref HEAD</code>: run against the files that
+  have changed between <code>HEAD^^^</code> and <code>HEAD</code>.  This form is useful when
+  leveraged in a pre-receive hook.</p>
+</div>
+</div>
+</div>
+<h2 id="pre-commit-sample-config-options">pre-commit sample-config [options]<a class="headerlink" href="#pre-commit-sample-config-options" title="Permanent link">&para;</a></h2>
+<p><span id="pre-commit-sample-config"></span></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">中文</label><label for="__tabbed_10_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>生成一个示例 <code>.pre-commit-config.yaml</code>。</p>
+<p>选项：（无其他选项）</p>
+<p>以下是 <code>.pre-commit-config.yaml</code> 的一个示例：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">repos</span>:
+-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/pre-commit/pre-commit-hooks
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>v2.3.0
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>check-yaml
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>end-of-file-fixer
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>trailing-whitespace-fixer
+-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/psf/black
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>22.10.0
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>black
+-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/asottile/pyupgrade
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>v2.29.0
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>pyupgrade
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">args</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">--py36-plus</span>]
+-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/pre-commit/mirrors-prettier
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>v2.7.0
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>prettier
+-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>local
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>pylint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>pylint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span>pylint --rcfile=.pylintrc $(git ls-files &#39;*.py&#39;)
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>script
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">types</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">python</span>]
+-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/pre-commit/mirrors-mypy
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>v0.931
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>mypy
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">additional_dependencies</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">types-pkg_resources</span>]
+-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/hadolint/hadolint
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>v2.8.0
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>hadolint-docker
+-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/shellcheck-py/shellcheck-py
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>v0.7.2.1
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>shellcheck
+-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/pre-commit/mirrors-eslint
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>v8.10.0
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>eslint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">additional_dependencies</span>:
+<span style="color: #bbbbbb">          </span>-<span style="color: #bbbbbb"> </span>eslint@7.32.0
+<span style="color: #bbbbbb">          </span>-<span style="color: #bbbbbb"> </span>eslint-plugin-react@7.28.0
+<span style="color: #bbbbbb">          </span>-<span style="color: #bbbbbb"> </span>eslint-plugin-import@2.25.2
+<span style="color: #bbbbbb">          </span>-<span style="color: #bbbbbb"> </span>eslint-config-airbnb@18.2.1
+<span style="color: #bbbbbb">          </span>-<span style="color: #bbbbbb"> </span>eslint-config-prettier@8.3.0
+</code></pre></div>
+<p>这个示例配置包括了多个流行的钩子仓库，用于执行诸如格式化代码、检查文件结尾、修复尾随空格、运行 <code>black</code> 代码格式化程序、升级 Python 包、运行 <code>prettier</code> 代码格式化程序、运行 <code>mypy</code> 静态类型检查器、检查 Dockerfile 的 <code>hadolint</code>、检查 shell 脚本的 <code>shellcheck</code> 以及运行 <code>eslint</code> 代码检查器等任务。此外，还展示了如何配置本地钩子和指定额外依赖项。</p>
+</div>
+<div class="tabbed-block">
+<p>Produce a sample <code>.pre-commit-config.yaml</code>.</p>
+<p>Options: (no additional options)</p>
+</div>
+</div>
+</div>
+<h2 id="pre-commit-try-repo-repo-options">pre-commit try-repo REPO [options]<a class="headerlink" href="#pre-commit-try-repo-repo-options" title="Permanent link">&para;</a></h2>
+<p><span id="pre-commit-try-repo"></span></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">中文</label><label for="__tabbed_11_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>尝试一个仓库中的钩子，这对于开发新的钩子非常有用。
+<code>try-repo</code> 也可以用来在添加到你的配置之前测试一个仓库。<code>try-repo</code> 在运行钩子之前会打印出基于远程钩子仓库生成的配置。</p>
+<p>选项：</p>
+<ul>
+<li><code>REPO</code>: 必需的可克隆的钩子仓库。可以是磁盘上的本地路径。</li>
+<li><code>--ref REF</code>: 手动选择一个引用来运行，否则将使用 <code>HEAD</code> 修订版。</li>
+<li><code>pre-commit try-repo</code> 也支持所有可用的 <a href="#pre-commit-run-hook-id"><code>pre-commit run</code></a> 选项。</li>
+</ul>
+<p>一些有用的调用示例：</p>
+<ul>
+<li><code>pre-commit try-repo https://github.com/pre-commit/pre-commit-hooks</code>: 在 <code>pre-commit/pre-commit-hooks</code> 的最新修订版中运行所有钩子。</li>
+<li><code>pre-commit try-repo ../path/to/repo</code>: 在磁盘上的仓库中运行所有钩子。</li>
+<li><code>pre-commit try-repo ../pre-commit-hooks flake8</code>: 仅运行在本地 <code>../pre-commit-hooks</code> 仓库中配置的 <code>flake8</code> 钩子。</li>
+<li>参见 <a href="#pre-commit-run-hook-id"><code>pre-commit run</code></a> 获取更多有用的 <code>run</code> 调用示例，这些也被 <code>pre-commit try-repo</code> 支持。</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>Try the hooks in a repository, useful for developing new hooks.
+<code>try-repo</code> can also be used for testing out a repository before adding it to
+your configuration.  <code>try-repo</code> prints a configuration it generates based on
+the remote hook repository before running the hooks.</p>
+<p>Options:</p>
+<ul>
+<li><code>REPO</code>: required clonable hooks repository.  Can be a local path on
+  disk.</li>
+<li><code>--ref REF</code>: Manually select a ref to run against, otherwise the <code>HEAD</code>
+  revision will be used.</li>
+<li><code>pre-commit try-repo</code> also supports all available options for
+  <a href="#pre-commit-run-hook-id"><code>pre-commit run</code></a>.</li>
+</ul>
+<p>Some example useful invocations:
+- <code>pre-commit try-repo https://github.com/pre-commit/pre-commit-hooks</code>: runs
+  all the hooks in the latest revision of <code>pre-commit/pre-commit-hooks</code>.
+- <code>pre-commit try-repo ../path/to/repo</code>: run all the hooks in a repository on
+  disk.
+- <code>pre-commit try-repo ../pre-commit-hooks flake8</code>: run only the <code>flake8</code> hook
+  configured in a local <code>../pre-commit-hooks</code> repository.
+- See <a href="#pre-commit-run-hook-id"><code>pre-commit run</code></a> for more useful <code>run</code> invocations
+  which are also supported by <code>pre-commit try-repo</code>.</p>
+</div>
+</div>
+</div>
+<h2 id="pre-commit-uninstall-options">pre-commit uninstall [options]<a class="headerlink" href="#pre-commit-uninstall-options" title="Permanent link">&para;</a></h2>
+<p><span id="pre-commit-uninstall"></span></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">中文</label><label for="__tabbed_12_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>卸载 pre-commit 脚本。</p>
+<p>选项：</p>
+<ul>
+<li><code>-t HOOK_TYPE, --hook-type HOOK_TYPE</code>: 指定要卸载的钩子类型。</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p>Uninstall the pre-commit script.</p>
+<p>Options:</p>
+<ul>
+<li><code>-t HOOK_TYPE, --hook-type HOOK_TYPE</code>: which hook type to uninstall.</li>
+</ul>
+</div>
+</div>
+</div>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年9月24日</span>
+      
+        <br>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年9月24日</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["header.autohide", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "content.tabs.link", "content.code.copy", "content.tooltips", "navigation.indexes", "navigation.prune", "navigation.instant"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.94c44541.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

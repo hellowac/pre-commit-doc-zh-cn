@@ -1,0 +1,2590 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="hellowac pre-commit 预提交处理，中文文档">
+      
+      
+      
+      
+        <link rel="prev" href="../cli/">
+      
+      
+        <link rel="next" href="../contributing/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.4">
+    
+    
+      
+        <title>高级功能 - pre-commimt</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bd3936ea.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="blue">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#高级功能" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+          <aside class="md-banner md-banner--warning">
+            <div class="md-banner__inner md-grid md-typeset">
+              
+你当前浏览的版本已不是最新版本，
+<a href="../..">
+    <strong>点击这里</strong>
+</a>查看最新版本的文档
+
+            </div>
+            <script>var el=document.querySelector("[data-md-component=outdated]"),outdated=__md_get("__outdated",sessionStorage);!0===outdated&&el&&(el.hidden=!1)</script>
+          </aside>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="pre-commimt" class="md-header__button md-logo" aria-label="pre-commimt" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            pre-commimt
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              高级功能
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/hellowac/pre-commit-doc-zh-cn" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hellowac/pre-commit-doc-zh-cn
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  欢迎来到pre-commmit文档!
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../intro/" class="md-tabs__link">
+          
+  
+    
+  
+  文档
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../hooks/" class="md-tabs__link">
+        
+  
+    
+  
+  支持的钩子
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/pre-commit/demo-repo#readme" class="md-tabs__link">
+        
+  
+    
+  
+  样例
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="pre-commimt" class="md-nav__button md-logo" aria-label="pre-commimt" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    pre-commimt
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/hellowac/pre-commit-doc-zh-cn" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hellowac/pre-commit-doc-zh-cn
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    欢迎来到pre-commmit文档!
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    文档
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            文档
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    简介
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    安装
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    配置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    用法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../new-hooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    创建新钩子
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    命令行接口
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    高级功能
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    高级功能
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#迁移模式migration下运行" class="md-nav__link">
+    迁移模式(migration)下运行
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#暂时关闭钩子" class="md-nav__link">
+    暂时关闭钩子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#限制钩子在某些阶段运行" class="md-nav__link">
+    限制钩子在某些阶段运行
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#支持的git钩子" class="md-nav__link">
+    支持的git钩子
+  </a>
+  
+    <nav class="md-nav" aria-label="支持的git钩子">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commit-msg" class="md-nav__link">
+    commit-msg
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-checkout" class="md-nav__link">
+    post-checkout
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-commit" class="md-nav__link">
+    post-commit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-merge" class="md-nav__link">
+    post-merge
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-rewrite" class="md-nav__link">
+    post-rewrite
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-commit" class="md-nav__link">
+    pre-commit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-merge-commit" class="md-nav__link">
+    pre-merge-commit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-push" class="md-nav__link">
+    pre-push
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-rebase" class="md-nav__link">
+    pre-rebase
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prepare-commit-msg" class="md-nav__link">
+    prepare-commit-msg
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#给钩子传递参数" class="md-nav__link">
+    给钩子传递参数
+  </a>
+  
+    <nav class="md-nav" aria-label="给钩子传递参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#钩子中的参数模式" class="md-nav__link">
+    钩子中的参数模式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#本地仓库钩子" class="md-nav__link">
+    本地仓库钩子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#内置钩子" class="md-nav__link">
+    内置钩子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#自动启用存储库的预提交" class="md-nav__link">
+    自动启用存储库的预提交
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#根据文件类型过滤" class="md-nav__link">
+    根据文件类型过滤
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#正则表达式" class="md-nav__link">
+    正则表达式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#覆盖语言版本" class="md-nav__link">
+    覆盖语言版本
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#标记你的存储库" class="md-nav__link">
+    标记你的存储库
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#在持续集成中的使用" class="md-nav__link">
+    在持续集成中的使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#管理-ci-缓存" class="md-nav__link">
+    管理 CI 缓存
+  </a>
+  
+    <nav class="md-nav" aria-label="管理 CI 缓存">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-commitci-样例" class="md-nav__link">
+    pre-commit.ci 样例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appveyor-样例" class="md-nav__link">
+    appveyor 样例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azure-pipelines-样例" class="md-nav__link">
+    azure pipelines 样例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circleci-样例" class="md-nav__link">
+    circleci 样例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-actions-样例" class="md-nav__link">
+    github actions 样例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitlab-ci-样例" class="md-nav__link">
+    gitlab CI 样例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#travis-ci-样例" class="md-nav__link">
+    travis-ci 样例
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#与-tox-一起使用" class="md-nav__link">
+    与 tox 一起使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#使用存储库的最新版本" class="md-nav__link">
+    使用存储库的最新版本
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    贡献
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    支持的钩子
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/pre-commit/demo-repo#readme" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    样例
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#迁移模式migration下运行" class="md-nav__link">
+    迁移模式(migration)下运行
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#暂时关闭钩子" class="md-nav__link">
+    暂时关闭钩子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#限制钩子在某些阶段运行" class="md-nav__link">
+    限制钩子在某些阶段运行
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#支持的git钩子" class="md-nav__link">
+    支持的git钩子
+  </a>
+  
+    <nav class="md-nav" aria-label="支持的git钩子">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#commit-msg" class="md-nav__link">
+    commit-msg
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-checkout" class="md-nav__link">
+    post-checkout
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-commit" class="md-nav__link">
+    post-commit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-merge" class="md-nav__link">
+    post-merge
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-rewrite" class="md-nav__link">
+    post-rewrite
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-commit" class="md-nav__link">
+    pre-commit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-merge-commit" class="md-nav__link">
+    pre-merge-commit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-push" class="md-nav__link">
+    pre-push
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-rebase" class="md-nav__link">
+    pre-rebase
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prepare-commit-msg" class="md-nav__link">
+    prepare-commit-msg
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#给钩子传递参数" class="md-nav__link">
+    给钩子传递参数
+  </a>
+  
+    <nav class="md-nav" aria-label="给钩子传递参数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#钩子中的参数模式" class="md-nav__link">
+    钩子中的参数模式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#本地仓库钩子" class="md-nav__link">
+    本地仓库钩子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#内置钩子" class="md-nav__link">
+    内置钩子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#自动启用存储库的预提交" class="md-nav__link">
+    自动启用存储库的预提交
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#根据文件类型过滤" class="md-nav__link">
+    根据文件类型过滤
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#正则表达式" class="md-nav__link">
+    正则表达式
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#覆盖语言版本" class="md-nav__link">
+    覆盖语言版本
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#标记你的存储库" class="md-nav__link">
+    标记你的存储库
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#在持续集成中的使用" class="md-nav__link">
+    在持续集成中的使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#管理-ci-缓存" class="md-nav__link">
+    管理 CI 缓存
+  </a>
+  
+    <nav class="md-nav" aria-label="管理 CI 缓存">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-commitci-样例" class="md-nav__link">
+    pre-commit.ci 样例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appveyor-样例" class="md-nav__link">
+    appveyor 样例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azure-pipelines-样例" class="md-nav__link">
+    azure pipelines 样例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circleci-样例" class="md-nav__link">
+    circleci 样例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#github-actions-样例" class="md-nav__link">
+    github actions 样例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitlab-ci-样例" class="md-nav__link">
+    gitlab CI 样例
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#travis-ci-样例" class="md-nav__link">
+    travis-ci 样例
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#与-tox-一起使用" class="md-nav__link">
+    与 tox 一起使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#使用存储库的最新版本" class="md-nav__link">
+    使用存储库的最新版本
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="高级功能">高级功能<a class="headerlink" href="#高级功能" title="Permanent link">&para;</a></h1>
+<p><strong>Advanced features</strong></p>
+<h2 id="迁移模式migration下运行">迁移模式(migration)下运行<a class="headerlink" href="#迁移模式migration下运行" title="Permanent link">&para;</a></h2>
+<p><strong>Running in migration mode</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">中文</label><label for="__tabbed_1_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>默认情况下，如果您已存在钩子，<code>pre-commit install</code> 将以迁移模式安装，它会同时运行您现有的钩子和 pre-commit 的钩子。</p>
+<p>要禁用此行为，请在 <code>install</code> 命令中传递 <code>-f</code> / <code>--overwrite</code> 参数。</p>
+<p>如果您决定不使用 pre-commit，<code>pre-commit uninstall</code> 将恢复您的钩子到安装前的状态。</p>
+</div>
+<div class="tabbed-block">
+<p>By default, if you have existing hooks <code>pre-commit install</code> will install in a
+migration mode which runs both your existing hooks and hooks for pre-commit.
+To disable this behavior, pass <code>-f</code> / <code>--overwrite</code> to the <code>install</code> command.
+If you decide not to use pre-commit, <code>pre-commit uninstall</code> will
+restore your hooks to the state prior to installation.</p>
+</div>
+</div>
+</div>
+<h2 id="暂时关闭钩子">暂时关闭钩子<a class="headerlink" href="#暂时关闭钩子" title="Permanent link">&para;</a></h2>
+<p><strong>Temporarily disabling hooks</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">中文</label><label for="__tabbed_2_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>不是所有的钩子都是完美的，所以有时您可能需要跳过一个或多个钩子的执行。pre-commit 通过查询 <code>SKIP</code> 环境变量来解决这个问题。<code>SKIP</code> 环境变量是一个用逗号分隔的钩子 ID 列表。这允许您跳过单个钩子，而不是使用 <code>--no-verify</code> 跳过整个提交。</p>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span><span style="color: #19177C">SKIP</span><span style="color: #666666">=</span>flake8<span style="color: #bbbbbb"> </span>git<span style="color: #bbbbbb"> </span>commit<span style="color: #bbbbbb"> </span>-m<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&quot;foo&quot;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Not all hooks are perfect so sometimes you may need to skip execution of one
+or more hooks. pre-commit solves this by querying a <code>SKIP</code> environment
+variable. The <code>SKIP</code> environment variable is a comma separated list of hook
+ids. This allows you to skip a single hook instead of <code>--no-verify</code>ing the
+entire commit.</p>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span><span style="color: #19177C">SKIP</span><span style="color: #666666">=</span>flake8<span style="color: #bbbbbb"> </span>git<span style="color: #bbbbbb"> </span>commit<span style="color: #bbbbbb"> </span>-m<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&quot;foo&quot;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="限制钩子在某些阶段运行">限制钩子在某些阶段运行<a class="headerlink" href="#限制钩子在某些阶段运行" title="Permanent link">&para;</a></h2>
+<p><strong>Confining hooks to run at certain stages</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">中文</label><label for="__tabbed_3_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>pre-commit 支持许多不同类型的 <code>git</code> 钩子（不仅仅是 <code>pre-commit</code>！）。</p>
+<p>钩子的提供者可以通过在 <code>.pre-commit-hooks.yaml</code> 中设置 <a href="../plugins/#hooks-stages"><code>stages</code></a> 属性来选择他们运行的 git 钩子类型——这也可以被 <code>.pre-commit-config.yaml</code> 中的 <a href="../plugins/#config-stages"><code>stages</code></a> 覆盖。如果在这两个地方都没有设置 <code>stages</code>，那么将从顶级的 <a href="../plugins/#top_level-default_stages"><code>default_stages</code></a> 选项中获取默认值（默认为所有阶段）。默认情况下，工具会为 pre-commit 支持的每个钩子类型启用。</p>
+<p><strong>新功能 3.2.0</strong>：<code>stages</code> 的值与钩子名称匹配。以前，<code>commit</code>、<code>push</code> 和 <code>merge-commit</code> 分别对应 <code>pre-commit</code>、<code>pre-push</code> 和 <code>pre-merge-commit</code>。</p>
+<p>通过 <code>stages: [manual]</code> 设置的 <code>manual</code> 阶段是一个特殊阶段，它不会被任何 <code>git</code> 钩子自动触发——这在您想要添加一个不自动运行的工具时很有用，但可以使用 <code>pre-commit run --hook-stage manual [hookid]</code> 按需运行。</p>
+<p>如果您是工具的作者，通常最好提供一个合适的 <code>stages</code> 属性。例如，对于一个 linter 或代码格式化工具来说，合理的设置可能是 <code>stages: [pre-commit, pre-merge-commit, pre-push, manual]</code>。</p>
+<p>要为特定的 git 钩子安装 <code>pre-commit</code>，请向 <code>pre-commit install</code> 传递 <code>--hook-type</code>。这可以多次指定，例如：</p>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>pre-commit<span style="color: #bbbbbb"> </span>install<span style="color: #bbbbbb"> </span>--hook-type<span style="color: #bbbbbb"> </span>pre-commit<span style="color: #bbbbbb"> </span>--hook-type<span style="color: #bbbbbb"> </span>pre-push
+<span style="color: #717171">pre-commit installed at .git/hooks/pre-commit</span>
+<span style="color: #717171">pre-commit installed at .git/hooks/pre-push</span>
+</code></pre></div>
+<p>此外，可以通过设置顶级的 <a href="../plugins/#top_level-default_install_hook_types"><code>default_install_hook_types</code></a> 来指定一组默认的 git 钩子类型进行安装。</p>
+<p>例如：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">default_install_hook_types</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">pre-commit</span>,<span style="color: #bbbbbb"> </span><span style="color: #19177C">pre-push</span>,<span style="color: #bbbbbb"> </span><span style="color: #19177C">commit-msg</span>]
+</code></pre></div>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>pre-commit<span style="color: #bbbbbb">  </span>install
+<span style="color: #717171">pre-commit installed at .git/hooks/pre-commit</span>
+<span style="color: #717171">pre-commit installed at .git/hooks/pre-push</span>
+<span style="color: #717171">pre-commit installed at .git/hooks/commit-msg</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>pre-commit supports many different types of <code>git</code> hooks (not just
+<code>pre-commit</code>!).</p>
+<p>Providers of hooks can select which git hooks they run on by setting the
+<a href="#hooks-stages"><code>stages</code></a> property in <code>.pre-commit-hooks.yaml</code> -- this can
+also be overridden by setting <a href="#config-stages"><code>stages</code></a> in
+<code>.pre-commit-config.yaml</code>.  If <code>stages</code> is not set in either of those places
+the default value will be pulled from the top-level
+<a href="#top_level-default_stages"><code>default_stages</code></a> option (which defaults to <em>all</em>
+stages).  By default, tools are enabled for <a href="#supported-git-hooks">every hook type</a>
+that pre-commit supports.</p>
+<p><em>new in 3.2.0</em>: The values of <code>stages</code> match the hook names.  Previously,
+<code>commit</code>, <code>push</code>, and <code>merge-commit</code> matched <code>pre-commit</code>, <code>pre-push</code>, and
+<code>pre-merge-commit</code> respectively.</p>
+<p>The <code>manual</code> stage (via <code>stages: [manual]</code>) is a special stage which will not
+be automatically triggered by any <code>git</code> hook -- this is useful if you want to
+add a tool which is not automatically run, but is run on demand using
+<code>pre-commit run --hook-stage manual [hookid]</code>.</p>
+<p>If you are authoring a tool, it is usually a good idea to provide an appropriate
+<code>stages</code> property.  For example a reasonable setting for a linter or code
+formatter would be <code>stages: [pre-commit, pre-merge-commit, pre-push, manual]</code>.</p>
+<p>To install <code>pre-commit</code> for particular git hooks, pass <code>--hook-type</code> to
+<code>pre-commit install</code>.  This can be specified multiple times such as:</p>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>pre-commit<span style="color: #bbbbbb"> </span>install<span style="color: #bbbbbb"> </span>--hook-type<span style="color: #bbbbbb"> </span>pre-commit<span style="color: #bbbbbb"> </span>--hook-type<span style="color: #bbbbbb"> </span>pre-push
+<span style="color: #717171">pre-commit installed at .git/hooks/pre-commit</span>
+<span style="color: #717171">pre-commit installed at .git/hooks/pre-push</span>
+</code></pre></div>
+<p>Additionally, one can specify a default set of git hook types to be installed
+for by setting the top-level <a href="#top_level-default_install_hook_types"><code>default_install_hook_types</code></a>.</p>
+<p>For example:</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">default_install_hook_types</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">pre-commit</span>,<span style="color: #bbbbbb"> </span><span style="color: #19177C">pre-push</span>,<span style="color: #bbbbbb"> </span><span style="color: #19177C">commit-msg</span>]
+</code></pre></div>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>pre-commit<span style="color: #bbbbbb">  </span>install
+<span style="color: #717171">pre-commit installed at .git/hooks/pre-commit</span>
+<span style="color: #717171">pre-commit installed at .git/hooks/pre-push</span>
+<span style="color: #717171">pre-commit installed at .git/hooks/commit-msg</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="支持的git钩子">支持的git钩子<a class="headerlink" href="#支持的git钩子" title="Permanent link">&para;</a></h2>
+<p><strong>Supported git hooks</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">中文</label><label for="__tabbed_4_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+<div class="tabbed-block"></div>
+</div>
+</div>
+<ul>
+<li><a href="#commit-msg">commit-msg</a></li>
+<li><a href="#post-checkout">post-checkout</a></li>
+<li><a href="#post-commit">post-commit</a></li>
+<li><a href="#post-merge">post-merge</a></li>
+<li><a href="#post-rewrite">post-rewrite</a></li>
+<li><a href="#pre-commit">pre-commit</a></li>
+<li><a href="#pre-merge-commit">pre-merge-commit</a></li>
+<li><a href="#pre-push">pre-push</a></li>
+<li><a href="#pre-rebase">pre-rebase</a></li>
+<li><a href="#prepare-commit-msg">prepare-commit-msg</a></li>
+</ul>
+<h3 id="commit-msg">commit-msg<a class="headerlink" href="#commit-msg" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">中文</label><label for="__tabbed_5_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a href="https://git-scm.com/docs/githooks#_commit_msg">git commit-msg 文档</a> </p>
+<p><code>commit-msg</code> 钩子将传递一个文件名参数——此文件包含要验证的当前提交消息的内容。如果退出码非零，提交将被中止。</p>
+</div>
+<div class="tabbed-block">
+<p><a href="https://git-scm.com/docs/githooks#_commit_msg">git commit-msg docs</a></p>
+<p><code>commit-msg</code> hooks will be passed a single filename -- this file contains the
+current contents of the commit message to be validated.  The commit will be
+aborted if there is a nonzero exit code.</p>
+</div>
+</div>
+</div>
+<h3 id="post-checkout">post-checkout<a class="headerlink" href="#post-checkout" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">中文</label><label for="__tabbed_6_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>新功能 2.2.0</strong></p>
+<p><a href="https://git-scm.com/docs/githooks#_post_checkout">git post-checkout 文档</a> </p>
+<p><code>post-checkout</code> 钩子在 <code>checkout</code> 操作之后运行，可以用来设置或管理仓库中的状态。</p>
+<p><code>post-checkout</code> 钩子不操作文件，所以它们必须设置为 <code>always_run: true</code>，否则它们将总是被跳过。</p>
+<p>环境变量：</p>
+<ul>
+<li><code>PRE_COMMIT_FROM_REF</code>: <code>post-checkout</code> git 钩子的第一个参数</li>
+<li><code>PRE_COMMIT_TO_REF</code>: <code>post-checkout</code> git 钩子的第二个参数</li>
+<li><code>PRE_COMMIT_CHECKOUT_TYPE</code>: <code>post-checkout</code> git 钩子的第三个参数</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><em>new in 2.2.0</em></p>
+<p><a href="https://git-scm.com/docs/githooks#_post_checkout">git post-checkout docs</a></p>
+<p>post-checkout hooks run <em>after</em> a <code>checkout</code> has occurred and can be used to
+set up or manage state in the repository.</p>
+<p><code>post-checkout</code> hooks do not operate on files so they must be set as
+<code>always_run: true</code> or they will always be skipped.</p>
+<p>environment variables:
+- <code>PRE_COMMIT_FROM_REF</code>: the first argument to the <code>post-checkout</code> git hook
+- <code>PRE_COMMIT_TO_REF</code>:  the second argument to the <code>post-checkout</code> git hook
+- <code>PRE_COMMIT_CHECKOUT_TYPE</code>: the third argument to the <code>post-checkout</code> git hook</p>
+</div>
+</div>
+</div>
+<h3 id="post-commit">post-commit<a class="headerlink" href="#post-commit" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">中文</label><label for="__tabbed_7_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>新功能 2.4.0</strong></p>
+<p><a href="https://git-scm.com/docs/githooks#_post_commit">git post-commit 文档</a> </p>
+<p><code>post-commit</code> 钩子在提交已经成功之后运行，因此它不能用来阻止提交发生。</p>
+<p><code>post-commit</code> 钩子不操作文件，所以它们必须设置为 <code>always_run: true</code>，否则它们将总是被跳过。</p>
+</div>
+<div class="tabbed-block">
+<p><em>new in 2.4.0</em></p>
+<p><a href="https://git-scm.com/docs/githooks#_post_commit">git post-commit docs</a></p>
+<p><code>post-commit</code> runs after the commit has already succeeded so it cannot be used
+to prevent the commit from happening.</p>
+<p><code>post-commit</code> hooks do not operate on files so they must be set as
+<code>always_run: true</code> or they will always be skipped.</p>
+</div>
+</div>
+</div>
+<h3 id="post-merge">post-merge<a class="headerlink" href="#post-merge" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">中文</label><label for="__tabbed_8_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>新功能 2.11.0</strong></p>
+<p><a href="https://git-scm.com/docs/githooks#_post_merge">git post-merge 文档</a> </p>
+<p><code>post-merge</code> 在 <code>git merge</code> 操作成功之后运行。</p>
+<p><code>post-merge</code> 钩子不操作文件，所以它们必须设置为 <code>always_run: true</code>，否则它们将总是被跳过。</p>
+<p>环境变量：</p>
+<ul>
+<li><code>PRE_COMMIT_IS_SQUASH_MERGE</code>: <code>post-merge</code> git 钩子的第一个参数。</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><em>new in 2.11.0</em></p>
+<p><a href="https://git-scm.com/docs/githooks#_post_merge">git post-merge docs</a></p>
+<p><code>post-merge</code> runs after a successful <code>git merge</code>.</p>
+<p><code>post-merge</code> hooks do not operate on files so they must be set as
+<code>always_run: true</code> or they will always be skipped.</p>
+<p>environment variables:
+- <code>PRE_COMMIT_IS_SQUASH_MERGE</code>: the first argument to the <code>post-merge</code> git hook.</p>
+</div>
+</div>
+</div>
+<h3 id="post-rewrite">post-rewrite<a class="headerlink" href="#post-rewrite" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">中文</label><label for="__tabbed_9_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><em>new in 2.15.0</em></p>
+<p><a href="https://git-scm.com/docs/githooks#_post_rewrite">git post-rewrite 文档</a> </p>
+<p><code>post-rewrite</code> 在像 <code>git commit --amend</code> 或 <code>git rebase</code> 这样修改历史记录的 git 命令之后运行。</p>
+<p><code>post-rewrite</code> 钩子不会操作文件，所以它们必须设置为 <code>always_run: true</code>，否则它们将总是被跳过。</p>
+<p>环境变量：</p>
+<ul>
+<li><code>PRE_COMMIT_REWRITE_COMMAND</code>: <code>post-rewrite</code> git 钩子的第一个参数。</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><em>new in 2.15.0</em></p>
+<p><a href="https://git-scm.com/docs/githooks#_post_rewrite">git post-rewrite docs</a></p>
+<p><code>post-rewrite</code> runs after a git command which modifies history such as
+<code>git commit --amend</code> or <code>git rebase</code>.</p>
+<p><code>post-rewrite</code> hooks do not operate on files so they must be set as
+<code>always_run: true</code> or they will always be skipped.</p>
+<p>environment variables:</p>
+<ul>
+<li><code>PRE_COMMIT_REWRITE_COMMAND</code>: the first argument to the <code>post-rewrite</code> git hook.</li>
+</ul>
+</div>
+</div>
+</div>
+<h3 id="pre-commit">pre-commit<a class="headerlink" href="#pre-commit" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">中文</label><label for="__tabbed_10_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a href="https://git-scm.com/docs/githooks#_pre_commit">git pre-commit 文档</a> </p>
+<p><code>pre-commit</code> 在提交最终确定之前被触发，以允许对正在提交的代码进行检查。如果在提交过程中对未暂存的更改运行钩子，可能会导致提交期间出现误报和漏报。pre-commit 仅在暂存的文件内容上运行，通过在运行钩子时临时存储未暂存的更改。</p>
+</div>
+<div class="tabbed-block">
+<p><a href="https://git-scm.com/docs/githooks#_pre_commit">git pre-commit docs</a></p>
+<p><code>pre-commit</code> is triggered before the commit is finalized to allow checks on the
+code being committed.  Running hooks on unstaged changes can lead to both
+false-positives and false-negatives during committing.  pre-commit only runs
+on the staged contents of files by temporarily stashing the unstaged changes
+while running hooks.</p>
+</div>
+</div>
+</div>
+<h3 id="pre-merge-commit">pre-merge-commit<a class="headerlink" href="#pre-merge-commit" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">中文</label><label for="__tabbed_11_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a href="https://git-scm.com/docs/githooks#_pre_merge_commit">git pre-merge-commit 文档</a> </p>
+<p><code>pre-merge-commit</code> 在合并成功后但创建合并提交之前触发。这个钩子在合并的所有暂存文件上运行。</p>
+<p>注意，你需要使用至少 git 2.24 版本才能使用这个钩子。</p>
+</div>
+<div class="tabbed-block">
+<p><a href="https://git-scm.com/docs/githooks#_pre_merge_commit">git pre-merge-commit docs</a></p>
+<p><code>pre-merge-commit</code> fires after a merge succeeds but before the merge commit is
+created.  This hook runs on all staged files from the merge.</p>
+<p>Note that you need to be using at least git 2.24 for this hook.</p>
+</div>
+</div>
+</div>
+<h3 id="pre-push">pre-push<a class="headerlink" href="#pre-push" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:2"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">中文</label><label for="__tabbed_12_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a href="https://git-scm.com/docs/githooks#_pre_push">git pre-push 文档</a> </p>
+<p><code>pre-push</code> 在执行 <code>git push</code> 时被触发。</p>
+<p>环境变量：
+- <code>PRE_COMMIT_FROM_REF</code>: 正在被推送到的修订版。
+- <code>PRE_COMMIT_TO_REF</code>: 正在被推送到远程的本地修订版。
+- <code>PRE_COMMIT_REMOTE_NAME</code>: 正在推送到的远程名称（例如 <code>origin</code>）。
+- <code>PRE_COMMIT_REMOTE_URL</code>: 正在推送到的远程的 URL（例如 <code>git@github.com:pre-commit/pre-commit</code>）。
+- <code>PRE_COMMIT_REMOTE_BRANCH</code>: 我们正在推送到的远程分支的名称（例如 <code>refs/heads/target-branch</code>）。
+- <code>PRE_COMMIT_LOCAL_BRANCH</code>: 正在推送到远程的本地分支的名称（例如 <code>HEAD</code>）。</p>
+</div>
+<div class="tabbed-block">
+<p><a href="https://git-scm.com/docs/githooks#_pre_push">git pre-push docs</a></p>
+<p><code>pre-push</code> is triggered on <code>git push</code>.</p>
+<p>environment variables:
+- <code>PRE_COMMIT_FROM_REF</code>: the revision that is being pushed to.
+- <code>PRE_COMMIT_TO_REF</code>: the local revision that is being pushed to the remote.
+- <code>PRE_COMMIT_REMOTE_NAME</code>: which remote is being pushed to (for example <code>origin</code>)
+- <code>PRE_COMMIT_REMOTE_URL</code>: the url of the remote that is being pushed to (for
+  example <code>git@github.com:pre-commit/pre-commit</code>)
+- <code>PRE_COMMIT_REMOTE_BRANCH</code>: the name of the remote branch to which we are
+   pushing (for example <code>refs/heads/target-branch</code>)
+- <code>PRE_COMMIT_LOCAL_BRANCH</code>: the name of the local branch that is being pushed
+  to the remote (for example <code>HEAD</code>)</p>
+</div>
+</div>
+</div>
+<h3 id="pre-rebase">pre-rebase<a class="headerlink" href="#pre-rebase" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="13:2"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><input id="__tabbed_13_2" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">中文</label><label for="__tabbed_13_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>在版本 3.2.0 中引入的新特性：</p>
+<p><a href="https://git-scm.com/docs/githooks#_pre_rebase">git pre-rebase 文档</a> </p>
+<p><code>pre-rebase</code> 钩子在执行变基操作之前被触发。如果钩子执行失败，可以取消变基操作。</p>
+<p><code>pre-rebase</code> 钩子不操作文件，因此它们必须设置为 <code>always_run: true</code>，否则它们将总是被跳过。</p>
+<p>环境变量：
+- <code>PRE_COMMIT_PRE_REBASE_UPSTREAM</code>：<code>pre-rebase</code> Git 钩子的第一个参数
+- <code>PRE_COMMIT_PRE_REBASE_BRANCH</code>：<code>pre-rebase</code> Git 钩子的第二个参数。</p>
+</div>
+<div class="tabbed-block">
+<p><em>new in 3.2.0</em></p>
+<p><a href="https://git-scm.com/docs/githooks#_pre_rebase">git pre-rebase docs</a></p>
+<p><code>pre-rebase</code> is triggered before a rebase occurs.  A hook failure can cancel a
+rebase from occurring.</p>
+<p><code>pre-rebase</code> hooks do not operate on files so they must be set as
+<code>always_run: true</code> or they will always be skipped.</p>
+<p>environment variables:
+- <code>PRE_COMMIT_PRE_REBASE_UPSTREAM</code>: the first argument to the <code>pre-rebase</code> git hook
+- <code>PRE_COMMIT_PRE_REBASE_BRANCH</code>: the second argument to the <code>pre-rebase</code> git hook.</p>
+</div>
+</div>
+</div>
+<h3 id="prepare-commit-msg">prepare-commit-msg<a class="headerlink" href="#prepare-commit-msg" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="14:2"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><input id="__tabbed_14_2" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">中文</label><label for="__tabbed_14_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><code>prepare-commit-msg</code> 钩子在提交信息编辑器启动之前被调用，它将接收一个文件名参数——这个文件可能是空的，或者它可能包含来自 <code>-m</code> 参数或其他模板的提交信息。<code>prepare-commit-msg</code> 钩子可以修改这个文件的内容，从而改变将要提交的内容。钩子可能需要检查 <code>GIT_EDITOR=:</code>，因为这表示不会启动编辑器。如果钩子以非零状态退出，则会中止提交。</p>
+<p>环境变量：</p>
+<ul>
+<li><code>PRE_COMMIT_COMMIT_MSG_SOURCE</code>：<code>prepare-commit-msg</code> Git 钩子的第二个参数</li>
+<li><code>PRE_COMMIT_COMMIT_OBJECT_NAME</code>：<code>prepare-commit-msg</code> Git 钩子的第三个参数</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><a href="https://git-scm.com/docs/githooks#_prepare_commit_msg">git prepare-commit-msg docs</a></p>
+<p><code>prepare-commit-msg</code> hooks will be passed a single filename -- this file may
+be empty or it could contain the commit message from <code>-m</code> or from other
+templates.  <code>prepare-commit-msg</code> hooks can modify the contents of this file to
+change what will be committed.  A hook may want to check for <code>GIT_EDITOR=:</code> as
+this indicates that no editor will be launched.  If a hook exits nonzero, the
+commit will be aborted.</p>
+<p>environment variables:
+- <code>PRE_COMMIT_COMMIT_MSG_SOURCE</code>: the second argument to the
+  <code>prepare-commit-msg</code> git hook
+- <code>PRE_COMMIT_COMMIT_OBJECT_NAME</code>: the third argument to the
+  <code>prepare-commit-msg</code> git hook</p>
+</div>
+</div>
+</div>
+<h2 id="给钩子传递参数">给钩子传递参数<a class="headerlink" href="#给钩子传递参数" title="Permanent link">&para;</a></h2>
+<p><strong>Passing arguments to hooks</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="15:2"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><input id="__tabbed_15_2" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">中文</label><label for="__tabbed_15_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>在某些情况下，钩子（hooks）需要参数才能正确运行。你可以通过在 <code>.pre-commit-config.yaml</code> 文件中的 <a href="../plugins/#config-args"><code>args</code></a> 属性里指定参数来传递静态参数，如下所示：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/PyCQA/flake8<span style="color: #bbbbbb"> </span>
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>4.0.1
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>flake8
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">args</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">--max-line-length=131</span>]
+</code></pre></div>
+<p>这将会把 <code>--max-line-length=131</code> 参数传递给 <code>flake8</code> 工具。</p>
+</div>
+<div class="tabbed-block">
+<p>Sometimes hooks require arguments to run correctly. You can pass static
+arguments by specifying the <a href="../plugins/#config-args"><code>args</code></a> property in your <code>.pre-commit-config.yaml</code>
+as follows:</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/PyCQA/flake8
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>4.0.1
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>flake8
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">args</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">--max-line-length=131</span>]
+</code></pre></div>
+<p>This will pass <code>--max-line-length=131</code> to <code>flake8</code>.</p>
+</div>
+</div>
+</div>
+<h3 id="钩子中的参数模式">钩子中的参数模式<a class="headerlink" href="#钩子中的参数模式" title="Permanent link">&para;</a></h3>
+<p><strong>Arguments pattern in hooks</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="16:2"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><input id="__tabbed_16_2" name="__tabbed_16" type="radio" /><div class="tabbed-labels"><label for="__tabbed_16_1">中文</label><label for="__tabbed_16_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>如果您正在编写自己的自定义钩子，则您的钩子应该预期接收 <a href="../plugins/#config-args"><code>args</code></a> 参数值，然后是一组已暂存的文件列表。</p>
+<p>例如，假设有一个 <code>.pre-commit-config.yaml</code> 文件：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/path/to/your/hook/repo<span style="color: #bbbbbb"> </span>
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>badf00ddeadbeef
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>my-hook-script-id
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">args</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">--myarg1=1</span>,<span style="color: #bbbbbb"> </span><span style="color: #19177C">--myarg1=2</span>]
+</code></pre></div>
+<p>当您下次运行 <code>pre-commit</code> 时，将调用您的脚本：</p>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>path/to/script-or-system-exe --myarg1=1 --myarg1=2 dir/file1 dir/file2 file3
+</code></pre></div>
+<p>如果 <a href="../plugins/#config-args"><code>args</code></a> 属性为空或未定义，将调用您的脚本：</p>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>path/to/script-or-system-exe dir/file1 dir/file2 file3
+</code></pre></div>
+<p>在创建本地钩子时，没有必要将命令参数放入 <a href="../plugins/#config-args"><code>args</code></a> 中，因为没有什么东西可以覆盖它们——相反，直接把参数直接放入钩子的 <a href="../new-hooks/#hooks-entry"><code>entry</code></a> 中。</p>
+<p>例如：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>local
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>check-requirements
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>检查需求文件
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>system
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span>python -m scripts.check_requirements --compare
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">files</span>:<span style="color: #bbbbbb"> </span>^requirements.*\.txt$
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>If you are writing your own custom hook, your hook should expect to receive
+the <a href="../plugins/#config-args"><code>args</code></a> value and then a list of staged files.</p>
+<p>For example, assuming a <code>.pre-commit-config.yaml</code>:</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/path/to/your/hook/repo
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>badf00ddeadbeef
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>my-hook-script-id
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">args</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">--myarg1=1</span>,<span style="color: #bbbbbb"> </span><span style="color: #19177C">--myarg1=2</span>]
+</code></pre></div>
+<p>When you next run <code>pre-commit</code>, your script will be called:</p>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>path/to/script-or-system-exe --myarg1=1 --myarg1=2 dir/file1 dir/file2 file3
+</code></pre></div>
+<p>If the <a href="../plugins/#config-args"><code>args</code></a> property is empty or not defined, your script will be called:</p>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>path/to/script-or-system-exe dir/file1 dir/file2 file3
+</code></pre></div>
+<p>When creating local hooks, there's no reason to put command arguments
+into <a href="../plugins/#config-args"><code>args</code></a> as there is nothing which can override them --
+instead put your arguments directly in the hook <a href="../new-hooks/#hooks-entry"><code>entry</code></a>.</p>
+<p>For example:</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>local
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>check-requirements
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>check requirements files
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>system
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span>python -m scripts.check_requirements --compare
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">files</span>:<span style="color: #bbbbbb"> </span>^requirements.*\.txt$
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="本地仓库钩子">本地仓库钩子<a class="headerlink" href="#本地仓库钩子" title="Permanent link">&para;</a></h2>
+<p><strong>Repository local hooks</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="17:2"><input checked="checked" id="__tabbed_17_1" name="__tabbed_17" type="radio" /><input id="__tabbed_17_2" name="__tabbed_17" type="radio" /><div class="tabbed-labels"><label for="__tabbed_17_1">中文</label><label for="__tabbed_17_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>仓库本地钩子在以下情况下很有用：</p>
+<ul>
+<li>当脚本与仓库紧密相关，并且将钩子脚本与仓库一起分发是有意义的。</li>
+<li>钩子需要的状态仅存在于仓库构建产物中（例如，用于 pylint 的应用虚拟环境）。</li>
+<li>某个 linter 的官方仓库没有 pre-commit 元数据。</li>
+</ul>
+<p>您可以通过指定 <a href="../plugins/#repos-repo"><code>repo</code></a> 为哨兵值 <code>local</code> 来配置仓库本地钩子。</p>
+<p>本地钩子可以使用支持 <a href="../plugins/#config-additional_dependencies"><code>additional_dependencies</code></a> 的任何语言，或者使用 <a href="../new-hooks/#docker_image"><code>docker_image</code></a> / <a href="../new-hooks/#fail"><code>fail</code></a> / <a href="../new-hooks/#pygrep"><code>pygrep</code></a> / <a href="../new-hooks/#script"><code>script</code></a> / <a href="../new-hooks/#system"><code>system</code></a>。
+这使您能够安装以前需要一个简单的镜像仓库的东西。</p>
+<p>一个 <code>local</code> 钩子必须定义 <a href="../new-hooks/#hooks-id"><code>id</code></a>, <a href="../new-hooks/#hooks-name"><code>name</code></a>, <a href="../new-hooks/#hooks-language"><code>language</code></a>, <a href="../new-hooks/#hooks-entry"><code>entry</code></a>, 和 <a href="../new-hooks/#hooks-files"><code>files</code></a> / <a href="../new-hooks/#hooks-types"><code>types</code></a> 如在 <a href="../new-hooks/">创建新钩子</a> 下所指定。</p>
+<p>这里有一个带有一些 <code>local</code> 钩子的示例配置：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>local
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>pylint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>pylint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span>pylint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>system
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">types</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">python</span>]
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">require_serial</span>:<span style="color: #bbbbbb"> </span>true
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>check-x
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>检查 X
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span>./bin/check-x.sh
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>script
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">files</span>:<span style="color: #bbbbbb"> </span>\.x$
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>scss-lint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>scss-lint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span>scss-lint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>ruby
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">language_version</span>:<span style="color: #bbbbbb"> </span>2.1.5
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">types</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">scss</span>]
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">additional_dependencies</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #BA2121">&#39;scss_lint:0.52.0&#39;</span>]
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Repository-local hooks are useful when:</p>
+<ul>
+<li>The scripts are tightly coupled to the repository and it makes sense to
+  distribute the hook scripts with the repository.</li>
+<li>Hooks require state that is only present in a built artifact of your
+  repository (such as your app's virtualenv for pylint).</li>
+<li>The official repository for a linter doesn't have the pre-commit metadata.</li>
+</ul>
+<p>You can configure repository-local hooks by specifying the <a href="../plugins/#repos-repo"><code>repo</code></a> as the
+sentinel <code>local</code>.</p>
+<p>local hooks can use any language which supports <a href="../plugins/#config-additional_dependencies"><code>additional_dependencies</code></a>
+or <a href="../new-hooks/#docker_image"><code>docker_image</code></a> / <a href="../new-hooks/#fail"><code>fail</code></a> / <a href="../new-hooks/#pygrep"><code>pygrep</code></a> / <a href="../new-hooks/#script"><code>script</code></a> / <a href="../new-hooks/#system"><code>system</code></a>.
+This enables you to install things which previously would require a trivial
+mirror repository.</p>
+<p>A <code>local</code> hook must define <a href="#hooks-id"><code>id</code></a>, <a href="#hooks-name"><code>name</code></a>, <a href="#hooks-language"><code>language</code></a>,
+<a href="../new-hooks/#hooks-entry"><code>entry</code></a>, and <a href="#hooks-files"><code>files</code></a> / <a href="#hooks-types"><code>types</code></a>
+as specified under <a href="#new-hooks">Creating new hooks</a>.</p>
+<p>Here's an example configuration with a few <code>local</code> hooks:</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>local
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>pylint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>pylint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span>pylint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>system
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">types</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">python</span>]
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">require_serial</span>:<span style="color: #bbbbbb"> </span>true
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>check-x
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>Check X
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span>./bin/check-x.sh
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>script
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">files</span>:<span style="color: #bbbbbb"> </span>\.x$
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>scss-lint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>scss-lint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">entry</span>:<span style="color: #bbbbbb"> </span>scss-lint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">language</span>:<span style="color: #bbbbbb"> </span>ruby
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">language_version</span>:<span style="color: #bbbbbb"> </span>2.1.5
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">types</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">scss</span>]
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">additional_dependencies</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #BA2121">&#39;scss_lint:0.52.0&#39;</span>]
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="内置钩子">内置钩子<a class="headerlink" href="#内置钩子" title="Permanent link">&para;</a></h2>
+<p><strong>meta hooks</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="18:2"><input checked="checked" id="__tabbed_18_1" name="__tabbed_18" type="radio" /><input id="__tabbed_18_2" name="__tabbed_18" type="radio" /><div class="tabbed-labels"><label for="__tabbed_18_1">中文</label><label for="__tabbed_18_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><code>pre-commit</code> 提供了几个钩子，这些钩子对于检查 pre-commit 配置本身非常有用。这些钩子可以使用 <code>repo: meta</code> 来启用。</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>meta
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>...
+</code></pre></div>
+<p>当前可用的 <code>meta</code> 钩子：</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#meta-check_hooks_apply"><code>check-hooks-apply</code></a><span id="meta-check_hooks_apply"></span></td>
+<td>确保配置的钩子至少适用于仓库中的一个文件。</td>
+</tr>
+<tr>
+<td><a href="#meta-check_useless_excludes"><code>check-useless-excludes</code></a><span id="meta-check_useless_excludes"></span></td>
+<td>确保 <code>exclude</code> 指令适用于仓库中的任何一个文件。</td>
+</tr>
+<tr>
+<td><a href="#meta-identity"><code>identity</code></a><span id="meta-identity"></span></td>
+<td>一个简单的钩子，它打印传给它的所有参数，对调试很有用。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<p><code>pre-commit</code> provides several hooks which are useful for checking the
+pre-commit configuration itself.  These can be enabled using <code>repo: meta</code>.</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>meta
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>...
+</code></pre></div>
+<p>The currently available <code>meta</code> hooks:</p>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>=r=
+    =c= [`check-hooks-apply`](_#meta-check_hooks_apply)
+    =c= ensures that the configured hooks apply to at least one file in the
+        repository.
+=r=
+    =c= [`check-useless-excludes`](_#meta-check_useless_excludes)
+    =c= ensures that `exclude` directives apply to _any_ file in the
+        repository.
+=r=
+    =c= [`identity`](_#meta-identity)
+    =c= a simple hook which prints all arguments passed to it, useful for
+        debugging.
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="自动启用存储库的预提交">自动启用存储库的预提交<a class="headerlink" href="#自动启用存储库的预提交" title="Permanent link">&para;</a></h2>
+<p><strong>automatically enabling pre-commit on repositories</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="19:2"><input checked="checked" id="__tabbed_19_1" name="__tabbed_19" type="radio" /><input id="__tabbed_19_2" name="__tabbed_19" type="radio" /><div class="tabbed-labels"><label for="__tabbed_19_1">中文</label><label for="__tabbed_19_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><code>pre-commit init-templatedir</code> 可用于设置 <code>git</code> 的 <code>init.templateDir</code> 选项的骨架。这意味着任何新克隆的仓库将自动设置钩子，无需运行 <code>pre-commit install</code>。</p>
+<p>要配置，请首先设置 <code>git</code> 的 <code>init.templateDir</code>——在这个例子中，我使用 <code>~/.git-template</code> 作为我的模板目录。</p>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>git<span style="color: #bbbbbb"> </span>config<span style="color: #bbbbbb"> </span>--global<span style="color: #bbbbbb"> </span>init.templateDir<span style="color: #bbbbbb"> </span>~/.git-template
+<span style="color: #000080; font-weight: bold">$ </span>pre-commit<span style="color: #bbbbbb"> </span>init-templatedir<span style="color: #bbbbbb"> </span>~/.git-template
+<span style="color: #717171">pre-commit installed at /home/asottile/.git-template/hooks/pre-commit</span>
+</code></pre></div>
+<p>现在，每当您克隆一个启用了 pre-commit 的仓库时，钩子已经被设置好了！</p>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>$ git clone -q git@github.com:asottile/pyupgrade
+$ cd pyupgrade
+$ git commit --allow-empty -m &#39;Hello world!&#39;
+Check docstring is first.............................(no files to check)Skipped
+Check Yaml...........................................(no files to check)Skipped
+Debug Statements (Python)............................(no files to check)Skipped
+...
+</code></pre></div>
+<p><code>init-templatedir</code> 使用了 <code>pre-commit install</code> 的 <code>--allow-missing-config</code> 选项，因此没有配置的仓库将被跳过：</p>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>git<span style="color: #bbbbbb"> </span>init<span style="color: #bbbbbb"> </span>sample
+<span style="color: #717171">Initialized empty Git repository in /tmp/sample/.git/</span>
+<span style="color: #000080; font-weight: bold">$ </span><span style="color: #008000">cd</span><span style="color: #bbbbbb"> </span>sample
+<span style="color: #000080; font-weight: bold">$ </span>git<span style="color: #bbbbbb"> </span>commit<span style="color: #bbbbbb"> </span>--allow-empty<span style="color: #bbbbbb"> </span>-m<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&#39;Initial commit&#39;</span>
+<span style="color: #717171">`.pre-commit-config.yaml` config file not found. Skipping `pre-commit`.</span>
+<span style="color: #717171">[main (root-commit) d1b39c1] Initial commit</span>
+</code></pre></div>
+<p>要仍然需要选择加入，但提示用户设置 pre-commit，使用如下的模板钩子（例如在 <code>~/.git-template/hooks/pre-commit</code> 中）。</p>
+<div class="language-bash highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #3D7B7B; font-style: italic">#!/usr/bin/env bash</span>
+<span style="color: #008000; font-weight: bold">if</span><span style="color: #bbbbbb"> </span><span style="color: #666666">[</span><span style="color: #bbbbbb"> </span>-f<span style="color: #bbbbbb"> </span>.pre-commit-config.yaml<span style="color: #bbbbbb"> </span><span style="color: #666666">]</span>;<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">then</span>
+<span style="color: #bbbbbb">    </span><span style="color: #008000">echo</span><span style="color: #bbbbbb"> </span><span style="color: #BA2121">&#39;pre-commit configuration detected, but `pre-commit install` was never run&#39;</span><span style="color: #bbbbbb"> </span><span style="color: #666666">1</span>&gt;&amp;<span style="color: #666666">2</span>
+<span style="color: #bbbbbb">    </span><span style="color: #008000">exit</span><span style="color: #bbbbbb"> </span><span style="color: #666666">1</span>
+<span style="color: #008000; font-weight: bold">fi</span>
+</code></pre></div>
+<p>这样，如果忘记运行 <code>pre-commit install</code>，在提交时会产生错误：</p>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>git<span style="color: #bbbbbb"> </span>clone<span style="color: #bbbbbb"> </span>-q<span style="color: #bbbbbb"> </span>https://github.com/asottile/pyupgrade<span style="color: #bbbbbb"> </span>
+<span style="color: #000080; font-weight: bold">$ </span><span style="color: #008000">cd</span><span style="color: #bbbbbb"> </span>pyupgrade/
+<span style="color: #000080; font-weight: bold">$ </span>git<span style="color: #bbbbbb"> </span>commit<span style="color: #bbbbbb"> </span>-m<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&#39;foo&#39;</span>
+<span style="color: #717171">pre-commit configuration detected, but `pre-commit install` was never run</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><code>pre-commit init-templatedir</code> can be used to set up a skeleton for <code>git</code>'s
+<code>init.templateDir</code> option.  This means that any newly cloned repository will
+automatically have the hooks set up without the need to run
+<code>pre-commit install</code>.</p>
+<p>To configure, first set <code>git</code>'s <code>init.templateDir</code> -- in this example I'm
+using <code>~/.git-template</code> as my template directory.</p>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>git<span style="color: #bbbbbb"> </span>config<span style="color: #bbbbbb"> </span>--global<span style="color: #bbbbbb"> </span>init.templateDir<span style="color: #bbbbbb"> </span>~/.git-template
+<span style="color: #000080; font-weight: bold">$ </span>pre-commit<span style="color: #bbbbbb"> </span>init-templatedir<span style="color: #bbbbbb"> </span>~/.git-template
+<span style="color: #717171">pre-commit installed at /home/asottile/.git-template/hooks/pre-commit</span>
+</code></pre></div>
+<p>Now whenever you clone a pre-commit enabled repo, the hooks will already be
+set up!</p>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>$ git clone -q git@github.com:asottile/pyupgrade
+$ cd pyupgrade
+$ git commit --allow-empty -m &#39;Hello world!&#39;
+Check docstring is first.............................(no files to check)Skipped
+Check Yaml...........................................(no files to check)Skipped
+Debug Statements (Python)............................(no files to check)Skipped
+...
+</code></pre></div>
+<p><code>init-templatedir</code> uses the <code>--allow-missing-config</code> option from
+<code>pre-commit install</code> so repos without a config will be skipped:</p>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>git<span style="color: #bbbbbb"> </span>init<span style="color: #bbbbbb"> </span>sample
+<span style="color: #717171">Initialized empty Git repository in /tmp/sample/.git/</span>
+<span style="color: #000080; font-weight: bold">$ </span><span style="color: #008000">cd</span><span style="color: #bbbbbb"> </span>sample
+<span style="color: #000080; font-weight: bold">$ </span>git<span style="color: #bbbbbb"> </span>commit<span style="color: #bbbbbb"> </span>--allow-empty<span style="color: #bbbbbb"> </span>-m<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&#39;Initial commit&#39;</span>
+<span style="color: #717171">`.pre-commit-config.yaml` config file not found. Skipping `pre-commit`.</span>
+<span style="color: #717171">[main (root-commit) d1b39c1] Initial commit</span>
+</code></pre></div>
+<p>To still require opt-in, but prompt the user to set up pre-commit use a
+template hook as follows (for example in <code>~/.git-template/hooks/pre-commit</code>).</p>
+<div class="language-bash highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #3D7B7B; font-style: italic">#!/usr/bin/env bash</span>
+<span style="color: #008000; font-weight: bold">if</span><span style="color: #bbbbbb"> </span><span style="color: #666666">[</span><span style="color: #bbbbbb"> </span>-f<span style="color: #bbbbbb"> </span>.pre-commit-config.yaml<span style="color: #bbbbbb"> </span><span style="color: #666666">]</span>;<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">then</span>
+<span style="color: #bbbbbb">    </span><span style="color: #008000">echo</span><span style="color: #bbbbbb"> </span><span style="color: #BA2121">&#39;pre-commit configuration detected, but `pre-commit install` was never run&#39;</span><span style="color: #bbbbbb"> </span><span style="color: #666666">1</span>&gt;&amp;<span style="color: #666666">2</span>
+<span style="color: #bbbbbb">    </span><span style="color: #008000">exit</span><span style="color: #bbbbbb"> </span><span style="color: #666666">1</span>
+<span style="color: #008000; font-weight: bold">fi</span>
+</code></pre></div>
+<p>With this, a forgotten <code>pre-commit install</code> produces an error on commit:</p>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>git<span style="color: #bbbbbb"> </span>clone<span style="color: #bbbbbb"> </span>-q<span style="color: #bbbbbb"> </span>https://github.com/asottile/pyupgrade
+<span style="color: #000080; font-weight: bold">$ </span><span style="color: #008000">cd</span><span style="color: #bbbbbb"> </span>pyupgrade/
+<span style="color: #000080; font-weight: bold">$ </span>git<span style="color: #bbbbbb"> </span>commit<span style="color: #bbbbbb"> </span>-m<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&#39;foo&#39;</span>
+<span style="color: #717171">pre-commit configuration detected, but `pre-commit install` was never run</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="根据文件类型过滤">根据文件类型过滤<a class="headerlink" href="#根据文件类型过滤" title="Permanent link">&para;</a></h2>
+<p><strong>Filtering files with types</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="20:2"><input checked="checked" id="__tabbed_20_1" name="__tabbed_20" type="radio" /><input id="__tabbed_20_2" name="__tabbed_20" type="radio" /><div class="tabbed-labels"><label for="__tabbed_20_1">中文</label><label for="__tabbed_20_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>使用 <code>types</code> 进行过滤相比传统的使用 <code>files</code> 过滤有多个优势：</p>
+<ul>
+<li>不需要容易出错的正则表达式。</li>
+<li>可以通过文件的 shebang（即使是没有扩展名的文件）进行匹配。</li>
+<li>可以轻松忽略符号链接/子模块。</li>
+</ul>
+<p><code>types</code> 是按钩子指定为标签数组。这些标签是通过 <a href="https://github.com/pre-commit/identify">identify</a> 库的一组启发式方法发现的。选择 <code>identify</code> 是因为它是一个小型的、可移植的、纯 Python 库。</p>
+<p>以下是一些 <code>identify</code> 常见的标签：</p>
+<ul>
+<li><code>file</code></li>
+<li><code>symlink</code></li>
+<li><code>directory</code> - 在 pre-commit 的上下文中，这将是子模块</li>
+<li><code>executable</code> - 文件是否设置了可执行位</li>
+<li><code>text</code> - 文件是否看起来像文本文件</li>
+<li><code>binary</code> - 文件是否看起来像二进制文件</li>
+<li><a href="https://github.com/pre-commit/identify/blob/main/identify/extensions.py">按扩展名/命名约定的标签</a></li>
+<li><a href="https://github.com/pre-commit/identify/blob/main/identify/interpreters.py">按 shebang (<code>#!</code>) 的标签</a></li>
+</ul>
+<p>要发现任何文件在磁盘上的类型，您可以使用 <code>identify</code> 的命令行界面：</p>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>identify-cli<span style="color: #bbbbbb"> </span>setup.py
+<span style="color: #717171">[&quot;file&quot;, &quot;non-executable&quot;, &quot;python&quot;, &quot;text&quot;]</span>
+<span style="color: #000080; font-weight: bold">$ </span>identify-cli<span style="color: #bbbbbb"> </span>some-random-file
+<span style="color: #717171">[&quot;file&quot;, &quot;non-executable&quot;, &quot;text&quot;]</span>
+<span style="color: #000080; font-weight: bold">$ </span>identify-cli<span style="color: #bbbbbb"> </span>--filename-only<span style="color: #bbbbbb"> </span>some-random-file;<span style="color: #bbbbbb"> </span><span style="color: #008000">echo</span><span style="color: #bbbbbb"> </span><span style="color: #19177C">$?</span>
+<span style="color: #717171">1</span>
+</code></pre></div>
+<p>如果您使用的文件扩展名不受支持，请<a href="https://github.com/pre-commit/identify">提交一个拉取请求</a>！</p>
+<p><code>types</code>、<code>types_or</code> 和 <code>files</code> 在过滤时会与 <code>AND</code> 一起评估。<code>types</code> 内的标签也使用 <code>AND</code> 评估。</p>
+<p><em>2.9.0 版本新功能</em>：<code>types_or</code> 内的标签使用 <code>OR</code> 评估。</p>
+<p>例如：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">files</span>:<span style="color: #bbbbbb"> </span>^foo/
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">types</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">file</span>,<span style="color: #bbbbbb"> </span><span style="color: #19177C">python</span>]
+</code></pre></div>
+<p>将匹配文件 <code>foo/1.py</code>，但不会匹配 <code>setup.py</code>。</p>
+<p>另一个例子：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">files</span>:<span style="color: #bbbbbb"> </span>^foo/
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">types_or</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">javascript</span>,<span style="color: #bbbbbb"> </span><span style="color: #19177C">jsx</span>,<span style="color: #bbbbbb"> </span><span style="color: #19177C">ts</span>,<span style="color: #bbbbbb"> </span><span style="color: #19177C">tsx</span>]
+</code></pre></div>
+<p>将匹配 <code>foo/bar.js</code> / <code>foo/bar.jsx</code> / <code>foo/bar.ts</code> / <code>foo/bar.tsx</code> 中的任何一个，但不会匹配 <code>baz.js</code>。</p>
+<p>如果您想匹配在使用现有钩子时未包含在 <code>type</code> 中的文件路径，则需要回退到仅使用 <code>files</code> 匹配，通过覆盖 <code>types</code> 设置。以下是使用 <code>check-json</code> 对非 JSON 文件进行匹配的示例：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>check-json
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">types</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">file</span>]<span style="color: #bbbbbb">  </span><span style="color: #3D7B7B; font-style: italic"># 覆盖 `types: [json]`</span>
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">files</span>:<span style="color: #bbbbbb"> </span>\.(json|myext)$
+</code></pre></div>
+<p>文件也可以通过 shebang 匹配。使用 <code>types: python</code> 时，以 <code>#!/usr/bin/env python3</code> 开始的 <code>exe</code> 也将被匹配。</p>
+<p>与 <code>files</code> 和 <code>exclude</code> 一样，如果需要，也可以使用 <code>exclude_types</code> 排除类型。</p>
+</div>
+<div class="tabbed-block">
+<p>Filtering with <code>types</code> provides several advantages over traditional filtering
+with <code>files</code>.</p>
+<ul>
+<li>no error-prone regular expressions</li>
+<li>files can be matched by their shebang (even when extensionless)</li>
+<li>symlinks / submodules can be easily ignored</li>
+</ul>
+<p><code>types</code> is specified per hook as an array of tags.  The tags are discovered
+through a set of heuristics by the
+<a href="https://github.com/pre-commit/identify">identify</a> library.  <code>identify</code> was
+chosen as it is a small portable pure python library.</p>
+<p>Some of the common tags you'll find from identify:</p>
+<ul>
+<li><code>file</code></li>
+<li><code>symlink</code></li>
+<li><code>directory</code> - in the context of pre-commit this will be a submodule</li>
+<li><code>executable</code> - whether the file has the executable bit set</li>
+<li><code>text</code> - whether the file looks like a text file</li>
+<li><code>binary</code> - whether the file looks like a binary file</li>
+<li><a href="https://github.com/pre-commit/identify/blob/main/identify/extensions.py">tags by extension / naming convention</a></li>
+<li><a href="https://github.com/pre-commit/identify/blob/main/identify/interpreters.py">tags by shebang (<code>#!</code>)</a></li>
+</ul>
+<p>To discover the type of any file on disk, you can use <code>identify</code>'s cli:</p>
+<div class="language-console highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #000080; font-weight: bold">$ </span>identify-cli<span style="color: #bbbbbb"> </span>setup.py
+<span style="color: #717171">[&quot;file&quot;, &quot;non-executable&quot;, &quot;python&quot;, &quot;text&quot;]</span>
+<span style="color: #000080; font-weight: bold">$ </span>identify-cli<span style="color: #bbbbbb"> </span>some-random-file
+<span style="color: #717171">[&quot;file&quot;, &quot;non-executable&quot;, &quot;text&quot;]</span>
+<span style="color: #000080; font-weight: bold">$ </span>identify-cli<span style="color: #bbbbbb"> </span>--filename-only<span style="color: #bbbbbb"> </span>some-random-file;<span style="color: #bbbbbb"> </span><span style="color: #008000">echo</span><span style="color: #bbbbbb"> </span><span style="color: #19177C">$?</span>
+<span style="color: #717171">1</span>
+</code></pre></div>
+<p>If a file extension you use is not supported, please
+<a href="https://github.com/pre-commit/identify">submit a pull request</a>!</p>
+<p><code>types</code>, <code>types_or</code>, and <code>files</code> are evaluated together with <code>AND</code> when
+filtering.  Tags within <code>types</code> are also evaluated using <code>AND</code>.</p>
+<p><em>new in 2.9.0</em>: Tags within <code>types_or</code> are evaluated using <code>OR</code>.</p>
+<p>For example:</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">files</span>:<span style="color: #bbbbbb"> </span>^foo/
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">types</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">file</span>,<span style="color: #bbbbbb"> </span><span style="color: #19177C">python</span>]
+</code></pre></div>
+<p>will match a file <code>foo/1.py</code> but will not match <code>setup.py</code>.</p>
+<p>Another example:</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">files</span>:<span style="color: #bbbbbb"> </span>^foo/
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">types_or</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">javascript</span>,<span style="color: #bbbbbb"> </span><span style="color: #19177C">jsx</span>,<span style="color: #bbbbbb"> </span><span style="color: #19177C">ts</span>,<span style="color: #bbbbbb"> </span><span style="color: #19177C">tsx</span>]
+</code></pre></div>
+<p>will match any of <code>foo/bar.js</code> / <code>foo/bar.jsx</code> / <code>foo/bar.ts</code> / <code>foo/bar.tsx</code>
+but not <code>baz.js</code>.</p>
+<p>If you want to match a file path that isn't included in a <code>type</code> when using an
+existing hook you'll need to revert back to <code>files</code> only matching by overriding
+the <code>types</code> setting.  Here's an example of using <code>check-json</code> against non-json
+files:</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>check-json
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">types</span>:<span style="color: #bbbbbb"> </span>[<span style="color: #19177C">file</span>]<span style="color: #bbbbbb">  </span><span style="color: #3D7B7B; font-style: italic"># override `types: [json]`</span>
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">files</span>:<span style="color: #bbbbbb"> </span>\.(json|myext)$
+</code></pre></div>
+<p>Files can also be matched by shebang.  With <code>types: python</code>, an <code>exe</code> starting
+with <code>#!/usr/bin/env python3</code> will also be matched.</p>
+<p>As with <code>files</code> and <code>exclude</code>, you can also exclude types if necessary using
+<code>exclude_types</code>.</p>
+</div>
+</div>
+</div>
+<h2 id="正则表达式">正则表达式<a class="headerlink" href="#正则表达式" title="Permanent link">&para;</a></h2>
+<p><strong>Regular expressions</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="21:2"><input checked="checked" id="__tabbed_21_1" name="__tabbed_21" type="radio" /><input id="__tabbed_21_2" name="__tabbed_21" type="radio" /><div class="tabbed-labels"><label for="__tabbed_21_1">中文</label><label for="__tabbed_21_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>模式 <code>files</code> 和 <code>exclude</code> 使用的是 Python 的
+<a href="https://docs.python.org/3/library/re.html#regular-expression-syntax">正则表达式</a>，
+并通过 <a href="https://docs.python.org/3/library/re.html#re.search"><code>re.search</code></a> 进行匹配。</p>
+<p>因此，您可以使用 Python 正则表达式支持的任何特性。</p>
+<p>如果您发现由于排除/包含的项过多，正则表达式变得复杂，可以考虑使用
+<a href="https://docs.python.org/3/library/re.html#re.VERBOSE">详细模式</a>。可以通过 YAML 的多行字面量和
+<code>(?x)</code> 正则标志来启用此模式。</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #3D7B7B; font-style: italic"># ...</span>
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>my-hook
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">exclude</span>:<span style="color: #bbbbbb"> </span>|
+<span style="color: #bbbbbb">            </span><span style="color: #880000">(?x)^(</span>
+<span style="color: #bbbbbb">                </span><span style="color: #880000">path/to/file1.py|</span>
+<span style="color: #bbbbbb">                </span><span style="color: #880000">path/to/file2.py|</span>
+<span style="color: #bbbbbb">                </span><span style="color: #880000">path/to/file3.py</span>
+<span style="color: #bbbbbb">            </span><span style="color: #880000">)$</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>The patterns for <code>files</code> and <code>exclude</code> are python
+<a href="https://docs.python.org/3/library/re.html#regular-expression-syntax">regular expressions</a>
+and are matched with <a href="https://docs.python.org/3/library/re.html#re.search"><code>re.search</code></a>.</p>
+<p>As such, you can use any of the features that python regexes support.</p>
+<p>If you find that your regular expression is becoming unwieldy due to a long
+list of excluded / included things, you may find a
+<a href="https://docs.python.org/3/library/re.html#re.VERBOSE">verbose</a> regular
+expression useful.  One can enable this with yaml's multiline literals and
+the <code>(?x)</code> regex flag.</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #3D7B7B; font-style: italic"># ...</span>
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>my-hook
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">exclude</span>:<span style="color: #bbbbbb"> </span>|
+<span style="color: #bbbbbb">            </span><span style="color: #880000">(?x)^(</span>
+<span style="color: #bbbbbb">                </span><span style="color: #880000">path/to/file1.py|</span>
+<span style="color: #bbbbbb">                </span><span style="color: #880000">path/to/file2.py|</span>
+<span style="color: #bbbbbb">                </span><span style="color: #880000">path/to/file3.py</span>
+<span style="color: #bbbbbb">            </span><span style="color: #880000">)$</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="覆盖语言版本">覆盖语言版本<a class="headerlink" href="#覆盖语言版本" title="Permanent link">&para;</a></h2>
+<p><strong>Overriding language version</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="22:2"><input checked="checked" id="__tabbed_22_1" name="__tabbed_22" type="radio" /><input id="__tabbed_22_2" name="__tabbed_22" type="radio" /><div class="tabbed-labels"><label for="__tabbed_22_1">中文</label><label for="__tabbed_22_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>有时您只想在特定版本的语言上运行钩子。对于每种语言，它们默认使用系统安装的语言（例如，如果我正在运行 <code>python3.7</code> 且钩子指定 <code>python</code>，则 pre-commit 会使用 <code>python3.7</code> 运行钩子）。有时您可能不想使用默认的系统安装版本，可以通过设置 <a href="../plugins/#config-language_version"><code>language_version</code></a> 逐钩子覆盖此设置。</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/pre-commit/mirrors-scss-lint
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>v0.54.0
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>scss-lint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">language_version</span>:<span style="color: #bbbbbb"> </span>2.1.5
+</code></pre></div>
+<p>这告诉 pre-commit 使用 Ruby <code>2.1.5</code> 来运行 <code>scss-lint</code> 钩子。</p>
+<p>以下是特定语言的有效值：</p>
+<ul>
+<li>python: 使用您系统中安装的任何 Python 解释器。该参数的值作为 <code>-p</code> 传递给 <code>virtualenv</code>。<ul>
+<li>在 Windows 上，
+  <a href="https://www.python.org/dev/peps/pep-0394/">pep394</a> 名称将被转换为 py 启动器调用以实现可移植性。因此，即使在 Windows 上，也应继续使用 <code>python3</code> (<code>py -3</code>) 或 <code>python3.6</code> (<code>py -3.6</code>)。</li>
+</ul>
+</li>
+<li>node: 参见 <a href="https://github.com/ekalinin/nodeenv#advanced">nodeenv</a>。</li>
+<li>ruby: 参见 <a href="https://github.com/sstephenson/ruby-build/tree/master/share/ruby-build">ruby-build</a>。</li>
+<li><em>在 2.21.0 中新增</em> rust: <code>language_version</code> 被传递给 <code>rustup</code>。</li>
+<li><em>在 3.0.0 中新增</em> golang: 使用 <a href="https://go.dev/dl/">go.dev/dl</a> 上的版本，例如 <code>1.19.5</code>。</li>
+</ul>
+<p>您可以在配置的 <a href="../plugins/#pre-commit-configyaml---顶级配置">顶层</a> 设置 <a href="../plugins/#top_level-default_language_version"><code>default_language_version</code></a> 来控制所有钩子的语言默认版本。</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">default_language_version</span>:
+<span style="color: #bbbbbb">    </span><span style="color: #3D7B7B; font-style: italic"># 强制所有未指定的 Python 钩子运行 python3</span>
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">python</span>:<span style="color: #bbbbbb"> </span>python3
+<span style="color: #bbbbbb">    </span><span style="color: #3D7B7B; font-style: italic"># 强制所有未指定的 Ruby 钩子运行 Ruby 2.1.5</span>
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">ruby</span>:<span style="color: #bbbbbb"> </span>2.1.5
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Sometimes you only want to run the hooks on a specific version of the
+language. For each language, they default to using the system installed
+language (So for example if I’m running <code>python3.7</code> and a hook specifies
+<code>python</code>, pre-commit will run the hook using <code>python3.7</code>). Sometimes you
+don’t want the default system installed version so you can override this on a
+per-hook basis by setting the <a href="#config-language_version"><code>language_version</code></a>.</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">repo</span>:<span style="color: #bbbbbb"> </span>https://github.com/pre-commit/mirrors-scss-lint
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">rev</span>:<span style="color: #bbbbbb"> </span>v0.54.0
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">hooks</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb">   </span><span style="color: #008000; font-weight: bold">id</span>:<span style="color: #bbbbbb"> </span>scss-lint
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">language_version</span>:<span style="color: #bbbbbb"> </span>2.1.5
+</code></pre></div>
+<p>This tells pre-commit to use ruby <code>2.1.5</code> to run the <code>scss-lint</code> hook.</p>
+<p>Valid values for specific languages are listed below:
+- python: Whatever system installed python interpreters you have. The value of
+  this argument is passed as the <code>-p</code> to <code>virtualenv</code>.
+    - on windows the
+      <a href="https://www.python.org/dev/peps/pep-0394/">pep394</a> name will be
+      translated into a py launcher call for portability.  So continue to use
+      names like <code>python3</code> (<code>py -3</code>) or <code>python3.6</code> (<code>py -3.6</code>) even on
+      windows.
+- node: See <a href="https://github.com/ekalinin/nodeenv#advanced">nodeenv</a>.
+- ruby: See <a href="https://github.com/sstephenson/ruby-build/tree/master/share/ruby-build">ruby-build</a>.
+- <em>new in 2.21.0</em> rust: <code>language_version</code> is passed to <code>rustup</code>
+- <em>new in 3.0.0</em> golang: use the versions on <a href="https://go.dev/dl/">go.dev/dl</a> such as <code>1.19.5</code></p>
+<p>you can set <a href="#top_level-default_language_version"><code>default_language_version</code></a>
+at the <a href="#pre-commit-configyaml---top-level">top level</a> in your configuration to
+control the default versions across all hooks of a language.</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">default_language_version</span>:
+<span style="color: #bbbbbb">    </span><span style="color: #3D7B7B; font-style: italic"># force all unspecified python hooks to run python3</span>
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">python</span>:<span style="color: #bbbbbb"> </span>python3
+<span style="color: #bbbbbb">    </span><span style="color: #3D7B7B; font-style: italic"># force all unspecified ruby hooks to run ruby 2.1.5</span>
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">ruby</span>:<span style="color: #bbbbbb"> </span>2.1.5
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="标记你的存储库">标记你的存储库<a class="headerlink" href="#标记你的存储库" title="Permanent link">&para;</a></h2>
+<p><strong>badging your repository</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="23:2"><input checked="checked" id="__tabbed_23_1" name="__tabbed_23" type="radio" /><input id="__tabbed_23_2" name="__tabbed_23" type="radio" /><div class="tabbed-labels"><label for="__tabbed_23_1">中文</label><label for="__tabbed_23_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>您可以在您的仓库中添加一个徽章，向贡献者/用户展示您使用 pre-commit！</p>
+<p><a href="https://github.com/pre-commit/pre-commit"><img alt="pre-commit" src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit" /></a></p>
+<ul>
+<li>Markdown:</li>
+</ul>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+</code></pre></div>
+<ul>
+<li>HTML:</li>
+</ul>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>&lt;a href=&quot;https://github.com/pre-commit/pre-commit&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&quot; alt=&quot;pre-commit&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;
+</code></pre></div>
+<ul>
+<li>reStructuredText:</li>
+</ul>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>.. image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit
+   :target: https://github.com/pre-commit/pre-commit
+   :alt: pre-commit
+</code></pre></div>
+<ul>
+<li>AsciiDoc:</li>
+</ul>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>image:https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit[pre-commit, link=https://github.com/pre-commit/pre-commit]
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>you can add a badge to your repository to show your contributors / users that
+you use pre-commit!</p>
+<p><a href="https://github.com/pre-commit/pre-commit"><img alt="pre-commit" src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit" /></a></p>
+<ul>
+<li>Markdown:</li>
+</ul>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+</code></pre></div>
+<ul>
+<li>HTML:</li>
+</ul>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>&lt;a href=&quot;https://github.com/pre-commit/pre-commit&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&quot; alt=&quot;pre-commit&quot; style=&quot;max-width:100%;&quot;&gt;&lt;/a&gt;
+</code></pre></div>
+<ul>
+<li>reStructuredText:</li>
+</ul>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>.. image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit
+   :target: https://github.com/pre-commit/pre-commit
+   :alt: pre-commit
+</code></pre></div>
+<ul>
+<li>AsciiDoc:</li>
+</ul>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>image:https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit[pre-commit, link=https://github.com/pre-commit/pre-commit]
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="在持续集成中的使用">在持续集成中的使用<a class="headerlink" href="#在持续集成中的使用" title="Permanent link">&para;</a></h2>
+<p><strong>Usage in continuous integration</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="24:2"><input checked="checked" id="__tabbed_24_1" name="__tabbed_24" type="radio" /><input id="__tabbed_24_2" name="__tabbed_24" type="radio" /><div class="tabbed-labels"><label for="__tabbed_24_1">中文</label><label for="__tabbed_24_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>pre-commit 还可以作为持续集成的工具。例如，将 <code>pre-commit run --all-files</code> 添加为 CI 步骤可以确保所有内容保持最佳状态。要仅检查已更改的文件（这可能更快），可以使用类似于 <code>pre-commit run --from-ref origin/HEAD --to-ref HEAD</code> 的命令。</p>
+</div>
+<div class="tabbed-block">
+<p>pre-commit can also be used as a tool for continuous integration.  For
+instance, adding <code>pre-commit run --all-files</code> as a CI step will ensure
+everything stays in tip-top shape.  To check only files which have changed,
+which may be faster, use something like
+<code>pre-commit run --from-ref origin/HEAD --to-ref HEAD</code></p>
+</div>
+</div>
+</div>
+<h2 id="管理-ci-缓存">管理 CI 缓存<a class="headerlink" href="#管理-ci-缓存" title="Permanent link">&para;</a></h2>
+<p><strong>Managing CI Caches</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="25:2"><input checked="checked" id="__tabbed_25_1" name="__tabbed_25" type="radio" /><input id="__tabbed_25_2" name="__tabbed_25" type="radio" /><div class="tabbed-labels"><label for="__tabbed_25_1">中文</label><label for="__tabbed_25_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>默认情况下，<code>pre-commit</code> 将其仓库存储在 <code>~/.cache/pre-commit</code> 中——这可以通过两种方式进行配置：</p>
+<ul>
+<li><code>PRE_COMMIT_HOME</code>：如果设置了该环境变量，pre-commit 将使用该位置。</li>
+<li><code>XDG_CACHE_HOME</code>：如果设置了该环境变量，pre-commit 将使用 <code>$XDG_CACHE_HOME/pre-commit</code>，遵循 <a href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html">XDG 基础目录规范</a>。</li>
+</ul>
+</div>
+<div class="tabbed-block">
+<p><code>pre-commit</code> by default places its repository store in <code>~/.cache/pre-commit</code>
+-- this can be configured in two ways:</p>
+<ul>
+<li><code>PRE_COMMIT_HOME</code>: if set, pre-commit will use that location instead.</li>
+<li><code>XDG_CACHE_HOME</code>: if set, pre-commit will use <code>$XDG_CACHE_HOME/pre-commit</code>
+  following the <a href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html">XDG Base Directory Specification</a>.</li>
+</ul>
+</div>
+</div>
+</div>
+<h3 id="pre-commitci-样例">pre-commit.ci 样例<a class="headerlink" href="#pre-commitci-样例" title="Permanent link">&para;</a></h3>
+<p><strong>pre-commit.ci example</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="26:2"><input checked="checked" id="__tabbed_26_1" name="__tabbed_26" type="radio" /><input id="__tabbed_26_2" name="__tabbed_26" type="radio" /><div class="tabbed-labels"><label for="__tabbed_26_1">中文</label><label for="__tabbed_26_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>在 <a href="https://pre-commit.ci">pre-commit.ci</a> 中运行无需额外配置！</p>
+<p>pre-commit.ci 还有以下优点：</p>
+<ul>
+<li>它比其他免费的 CI 解决方案更快</li>
+<li>它会自动修复拉取请求</li>
+<li>它会定期自动更新您的配置</li>
+</ul>
+<p><a href="https://github.com/pre-commit-ci-demo/demo#results"><img alt="pre-commit.ci 速度比较" src="https://raw.githubusercontent.com/pre-commit-ci-demo/demo/main/img/2020-12-15_noop.svg" /></a></p>
+</div>
+<div class="tabbed-block">
+<p>no additional configuration is needed to run in <a href="https://pre-commit.ci">pre-commit.ci</a>!</p>
+<p>pre-commit.ci also has the following benefits:</p>
+<ul>
+<li>it's faster than other free CI solutions</li>
+<li>it will autofix pull requests</li>
+<li>it will periodically autoupdate your configuration</li>
+</ul>
+<p><a href="https://github.com/pre-commit-ci-demo/demo#results"><img alt="pre-commit.ci speed comparison" src="https://raw.githubusercontent.com/pre-commit-ci-demo/demo/main/img/2020-12-15_noop.svg" /></a></p>
+</div>
+</div>
+</div>
+<h3 id="appveyor-样例">appveyor 样例<a class="headerlink" href="#appveyor-样例" title="Permanent link">&para;</a></h3>
+<p><strong>appveyor example</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="27:2"><input checked="checked" id="__tabbed_27_1" name="__tabbed_27" type="radio" /><input id="__tabbed_27_2" name="__tabbed_27" type="radio" /><div class="tabbed-labels"><label for="__tabbed_27_1">中文</label><label for="__tabbed_27_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">cache</span>:
+-<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&#39;%USERPROFILE%\.cache\pre-commit&#39;</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">cache</span>:
+-<span style="color: #bbbbbb"> </span><span style="color: #BA2121">&#39;%USERPROFILE%\.cache\pre-commit&#39;</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="azure-pipelines-样例">azure pipelines 样例<a class="headerlink" href="#azure-pipelines-样例" title="Permanent link">&para;</a></h3>
+<p><strong>azure pipelines example</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="28:2"><input checked="checked" id="__tabbed_28_1" name="__tabbed_28" type="radio" /><input id="__tabbed_28_2" name="__tabbed_28" type="radio" /><div class="tabbed-labels"><label for="__tabbed_28_1">中文</label><label for="__tabbed_28_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>注意：Azure Pipelines 使用不可变缓存，因此 Python 版本和 <code>.pre-commit-config.yaml</code> 哈希必须包含在缓存键中。有关仓库模板，请参见 <a href="https://github.com/asottile/azure-pipeline-templates/blob/main/job--pre-commit.yml">asottile@job--pre-commit.yml</a>。</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">jobs</span>:
+-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">job</span>:<span style="color: #bbbbbb"> </span>precommit
+
+<span style="color: #bbbbbb">  </span><span style="color: #3D7B7B; font-style: italic"># ...</span>
+
+<span style="color: #bbbbbb">  </span><span style="color: #008000; font-weight: bold">variables</span>:
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">PRE_COMMIT_HOME</span>:<span style="color: #bbbbbb"> </span>$(Pipeline.Workspace)/pre-commit-cache
+
+<span style="color: #bbbbbb">  </span><span style="color: #008000; font-weight: bold">steps</span>:
+
+<span style="color: #bbbbbb">  </span><span style="color: #3D7B7B; font-style: italic"># ...</span>
+
+<span style="color: #bbbbbb">  </span>-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">script</span>:<span style="color: #bbbbbb"> </span>echo &quot;##vso[task.setvariable variable=PY]$(python -VV)&quot;
+<span style="color: #bbbbbb">  </span>-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">task</span>:<span style="color: #bbbbbb"> </span>CacheBeta@0
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">inputs</span>:
+<span style="color: #bbbbbb">      </span><span style="color: #008000; font-weight: bold">key</span>:<span style="color: #bbbbbb"> </span>pre-commit | .pre-commit-config.yaml | &quot;$(PY)&quot;
+<span style="color: #bbbbbb">      </span><span style="color: #008000; font-weight: bold">path</span>:<span style="color: #bbbbbb"> </span>$(PRE_COMMIT_HOME)
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>note: azure pipelines uses immutable caches so the python version and
+<code>.pre-commit-config.yaml</code> hash must be included in the cache key.  for a
+repository template, see <a href="https://github.com/asottile/azure-pipeline-templates/blob/main/job--pre-commit.yml">asottile@job--pre-commit.yml</a>.</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">jobs</span>:
+-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">job</span>:<span style="color: #bbbbbb"> </span>precommit
+
+<span style="color: #bbbbbb">  </span><span style="color: #3D7B7B; font-style: italic"># ...</span>
+
+<span style="color: #bbbbbb">  </span><span style="color: #008000; font-weight: bold">variables</span>:
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">PRE_COMMIT_HOME</span>:<span style="color: #bbbbbb"> </span>$(Pipeline.Workspace)/pre-commit-cache
+
+<span style="color: #bbbbbb">  </span><span style="color: #008000; font-weight: bold">steps</span>:
+
+<span style="color: #bbbbbb">  </span><span style="color: #3D7B7B; font-style: italic"># ...</span>
+
+<span style="color: #bbbbbb">  </span>-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">script</span>:<span style="color: #bbbbbb"> </span>echo &quot;##vso[task.setvariable variable=PY]$(python -VV)&quot;
+<span style="color: #bbbbbb">  </span>-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">task</span>:<span style="color: #bbbbbb"> </span>CacheBeta@0
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">inputs</span>:
+<span style="color: #bbbbbb">      </span><span style="color: #008000; font-weight: bold">key</span>:<span style="color: #bbbbbb"> </span>pre-commit | .pre-commit-config.yaml | &quot;$(PY)&quot;
+<span style="color: #bbbbbb">      </span><span style="color: #008000; font-weight: bold">path</span>:<span style="color: #bbbbbb"> </span>$(PRE_COMMIT_HOME)
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="circleci-样例">circleci 样例<a class="headerlink" href="#circleci-样例" title="Permanent link">&para;</a></h3>
+<p><strong>circleci example</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="29:2"><input checked="checked" id="__tabbed_29_1" name="__tabbed_29" type="radio" /><input id="__tabbed_29_2" name="__tabbed_29" type="radio" /><div class="tabbed-labels"><label for="__tabbed_29_1">中文</label><label for="__tabbed_29_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>像 <a href="#azure-pipelines-example">Azure Pipelines</a> 一样，CircleCI 也使用不可变缓存：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #bbbbbb">  </span><span style="color: #008000; font-weight: bold">steps</span>:
+<span style="color: #bbbbbb">  </span>-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">run</span>:
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">command</span>:<span style="color: #bbbbbb"> </span>|
+<span style="color: #bbbbbb">      </span><span style="color: #880000">cp .pre-commit-config.yaml pre-commit-cache-key.txt</span>
+<span style="color: #bbbbbb">      </span><span style="color: #880000">python --version --version &gt;&gt; pre-commit-cache-key.txt</span>
+<span style="color: #bbbbbb">  </span>-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">restore_cache</span>:
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">keys</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb"> </span>v1-pc-cache-{{ checksum &quot;pre-commit-cache-key.txt&quot; }}
+
+<span style="color: #bbbbbb">  </span><span style="color: #3D7B7B; font-style: italic"># ...</span>
+
+<span style="color: #bbbbbb">  </span>-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">save_cache</span>:
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">key</span>:<span style="color: #bbbbbb"> </span>v1-pc-cache-{{ checksum &quot;pre-commit-cache-key.txt&quot; }}
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">paths</span>:
+<span style="color: #bbbbbb">      </span>-<span style="color: #bbbbbb"> </span>~/.cache/pre-commit
+</code></pre></div>
+<p>（来源：<a href="https://github.com/Unity-Technologies/ml-agents/pull/3094/files#diff-1d37e48f9ceff6d8030570cd36286a61">@chriselion</a>）</p>
+</div>
+<div class="tabbed-block">
+<p>like <a href="#azure-pipelines-example">azure pipelines</a>, circleci also uses immutable
+caches:</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #bbbbbb">  </span><span style="color: #008000; font-weight: bold">steps</span>:
+<span style="color: #bbbbbb">  </span>-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">run</span>:
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">command</span>:<span style="color: #bbbbbb"> </span>|
+<span style="color: #bbbbbb">      </span><span style="color: #880000">cp .pre-commit-config.yaml pre-commit-cache-key.txt</span>
+<span style="color: #bbbbbb">      </span><span style="color: #880000">python --version --version &gt;&gt; pre-commit-cache-key.txt</span>
+<span style="color: #bbbbbb">  </span>-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">restore_cache</span>:
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">keys</span>:
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb"> </span>v1-pc-cache-{{ checksum &quot;pre-commit-cache-key.txt&quot; }}
+
+<span style="color: #bbbbbb">  </span><span style="color: #3D7B7B; font-style: italic"># ...</span>
+
+<span style="color: #bbbbbb">  </span>-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">save_cache</span>:
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">key</span>:<span style="color: #bbbbbb"> </span>v1-pc-cache-{{ checksum &quot;pre-commit-cache-key.txt&quot; }}
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">paths</span>:
+<span style="color: #bbbbbb">      </span>-<span style="color: #bbbbbb"> </span>~/.cache/pre-commit
+</code></pre></div>
+<p>(source: <a href="https://github.com/Unity-Technologies/ml-agents/pull/3094/files#diff-1d37e48f9ceff6d8030570cd36286a61">@chriselion</a>)</p>
+</div>
+</div>
+</div>
+<h3 id="github-actions-样例">github actions 样例<a class="headerlink" href="#github-actions-样例" title="Permanent link">&para;</a></h3>
+<p><strong>github actions example</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="30:2"><input checked="checked" id="__tabbed_30_1" name="__tabbed_30" type="radio" /><input id="__tabbed_30_2" name="__tabbed_30" type="radio" /><div class="tabbed-labels"><label for="__tabbed_30_1">中文</label><label for="__tabbed_30_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>查看 <a href="https://github.com/pre-commit/action">官方 pre-commit GitHub 动作</a></strong></p>
+<p>与 <a href="#azure-pipelines-example">Azure Pipelines</a> 类似，GitHub Actions 也使用不可变缓存：</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>set PY
+<span style="color: #bbbbbb">      </span><span style="color: #008000; font-weight: bold">run</span>:<span style="color: #bbbbbb"> </span>echo &quot;PY=$(python -VV | sha256sum | cut -d&#39; &#39; -f1)&quot; &gt;&gt; $GITHUB_ENV
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">uses</span>:<span style="color: #bbbbbb"> </span>actions/cache@v3
+<span style="color: #bbbbbb">      </span><span style="color: #008000; font-weight: bold">with</span>:
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">path</span>:<span style="color: #bbbbbb"> </span>~/.cache/pre-commit
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">key</span>:<span style="color: #bbbbbb"> </span>pre-commit|${{ env.PY }}|${{ hashFiles(&#39;.pre-commit-config.yaml&#39;) }}
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><strong>see the <a href="https://github.com/pre-commit/action">official pre-commit github action</a></strong></p>
+<p>like <a href="#azure-pipelines-example">azure pipelines</a>, github actions also uses
+immutable caches:</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">name</span>:<span style="color: #bbbbbb"> </span>set PY
+<span style="color: #bbbbbb">      </span><span style="color: #008000; font-weight: bold">run</span>:<span style="color: #bbbbbb"> </span>echo &quot;PY=$(python -VV | sha256sum | cut -d&#39; &#39; -f1)&quot; &gt;&gt; $GITHUB_ENV
+<span style="color: #bbbbbb">    </span>-<span style="color: #bbbbbb"> </span><span style="color: #008000; font-weight: bold">uses</span>:<span style="color: #bbbbbb"> </span>actions/cache@v3
+<span style="color: #bbbbbb">      </span><span style="color: #008000; font-weight: bold">with</span>:
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">path</span>:<span style="color: #bbbbbb"> </span>~/.cache/pre-commit
+<span style="color: #bbbbbb">        </span><span style="color: #008000; font-weight: bold">key</span>:<span style="color: #bbbbbb"> </span>pre-commit|${{ env.PY }}|${{ hashFiles(&#39;.pre-commit-config.yaml&#39;) }}
+</code></pre></div>
+</div>
+</div>
+</div>
+<h3 id="gitlab-ci-样例">gitlab CI 样例<a class="headerlink" href="#gitlab-ci-样例" title="Permanent link">&para;</a></h3>
+<p><strong>gitlab CI example</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="31:2"><input checked="checked" id="__tabbed_31_1" name="__tabbed_31" type="radio" /><input id="__tabbed_31_2" name="__tabbed_31" type="radio" /><div class="tabbed-labels"><label for="__tabbed_31_1">中文</label><label for="__tabbed_31_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>查看 <a href="https://docs.gitlab.com/ee/ci/caching/#good-caching-practices">GitLab 缓存最佳实践</a> 以优化缓存范围。</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">my_job</span>:
+<span style="color: #bbbbbb">  </span><span style="color: #008000; font-weight: bold">variables</span>:
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">PRE_COMMIT_HOME</span>:<span style="color: #bbbbbb"> </span>${CI_PROJECT_DIR}/.cache/pre-commit
+<span style="color: #bbbbbb">  </span><span style="color: #008000; font-weight: bold">cache</span>:
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">paths</span>:
+<span style="color: #bbbbbb">      </span>-<span style="color: #bbbbbb"> </span>${PRE_COMMIT_HOME}
+</code></pre></div>
+<p>pre-commit 的缓存需要在不同构建之间保持在一个固定位置。当在 GitLab 上使用 k8s 运行器时，这并不是默认设置。如果遇到错误 <code>InvalidManifestError</code>，请在 <code>[[runner]]</code> 配置中将 <code>builds_dir</code> 设置为某个静态值，例如 <code>builds_dir = "/builds"</code>。</p>
+</div>
+<div class="tabbed-block">
+<p>See the <a href="https://docs.gitlab.com/ee/ci/caching/#good-caching-practices">Gitlab caching best practices</a> to fine tune the cache scope.</p>
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">my_job</span>:
+<span style="color: #bbbbbb">  </span><span style="color: #008000; font-weight: bold">variables</span>:
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">PRE_COMMIT_HOME</span>:<span style="color: #bbbbbb"> </span>${CI_PROJECT_DIR}/.cache/pre-commit
+<span style="color: #bbbbbb">  </span><span style="color: #008000; font-weight: bold">cache</span>:
+<span style="color: #bbbbbb">    </span><span style="color: #008000; font-weight: bold">paths</span>:
+<span style="color: #bbbbbb">      </span>-<span style="color: #bbbbbb"> </span>${PRE_COMMIT_HOME}
+</code></pre></div>
+<p>pre-commit's cache requires to be served from a constant location between the different builds. This isn't the default when using k8s runners
+on GitLab. In case you face the error <code>InvalidManifestError</code>, set <code>builds_dir</code> to something static e.g <code>builds_dir = "/builds"</code> in your <code>[[runner]]</code> config</p>
+</div>
+</div>
+</div>
+<h3 id="travis-ci-样例">travis-ci 样例<a class="headerlink" href="#travis-ci-样例" title="Permanent link">&para;</a></h3>
+<p><strong>travis-ci example</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="32:2"><input checked="checked" id="__tabbed_32_1" name="__tabbed_32" type="radio" /><input id="__tabbed_32_2" name="__tabbed_32" type="radio" /><div class="tabbed-labels"><label for="__tabbed_32_1">中文</label><label for="__tabbed_32_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">cache</span>:
+<span style="color: #bbbbbb">  </span><span style="color: #008000; font-weight: bold">directories</span>:
+<span style="color: #bbbbbb">  </span>-<span style="color: #bbbbbb"> </span>$HOME/.cache/pre-commit
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-yaml highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">cache</span>:
+<span style="color: #bbbbbb">  </span><span style="color: #008000; font-weight: bold">directories</span>:
+<span style="color: #bbbbbb">  </span>-<span style="color: #bbbbbb"> </span>$HOME/.cache/pre-commit
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="与-tox-一起使用">与 tox 一起使用<a class="headerlink" href="#与-tox-一起使用" title="Permanent link">&para;</a></h2>
+<p><strong>Usage with tox</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="33:2"><input checked="checked" id="__tabbed_33_1" name="__tabbed_33" type="radio" /><input id="__tabbed_33_2" name="__tabbed_33" type="radio" /><div class="tabbed-labels"><label for="__tabbed_33_1">中文</label><label for="__tabbed_33_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><a href="https://tox.readthedocs.io/">tox</a> 对于配置测试/CI 工具（如 pre-commit）非常有用。<code>tox&gt;=2</code> 的一个特点是它会清除环境变量，从而使测试更加可重复。在某些情况下，pre-commit 需要一些环境变量，因此必须允许它们通过。</p>
+<p>在通过 SSH 克隆仓库时（<code>repo: git@github.com:...</code>），<code>git</code> 需要 <code>SSH_AUTH_SOCK</code> 变量，否则会失败：</p>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>[INFO] 正在为 git@github.com:pre-commit/pre-commit-hooks 初始化环境。
+发生意外错误：CalledProcessError: command: (&#39;/usr/bin/git&#39;, &#39;fetch&#39;, &#39;origin&#39;, &#39;--tags&#39;)
+返回代码：128
+预期返回代码：0
+标准输出：（无）
+标准错误：
+    git@github.com: 权限被拒绝（公钥）。
+    fatal: 无法从远程仓库读取。
+
+    请确保您拥有正确的访问权限
+    并且仓库存在。
+
+请查看位于 /home/asottile/.cache/pre-commit/pre-commit.log 的日志。
+</code></pre></div>
+<p>在您的 tox 测试环境中添加以下内容：</p>
+<div class="language-ini highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">[testenv]</span>
+<span style="color: #687822">passenv</span><span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span><span style="color: #BA2121">SSH_AUTH_SOCK</span>
+</code></pre></div>
+<p>同样，在通过 HTTP/HTTPS 克隆仓库时（<code>repo: https://github.com:...</code>），您可能在公司 HTTP(S) 代理服务器后面，此时 <code>git</code> 需要设置 <code>http_proxy</code>、<code>https_proxy</code> 和 <code>no_proxy</code> 变量，否则克隆可能会失败：</p>
+<div class="language-ini highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">[testenv]</span>
+<span style="color: #687822">passenv</span><span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span><span style="color: #BA2121">http_proxy https_proxy no_proxy</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p><a href="https://tox.readthedocs.io/">tox</a> is useful for configuring test / CI tools
+such as pre-commit.  One feature of <code>tox&gt;=2</code> is it will clear environment
+variables such that tests are more reproducible.  Under some conditions,
+pre-commit requires a few environment variables and so they must be
+allowed to be passed through.</p>
+<p>When cloning repos over ssh (<code>repo: git@github.com:...</code>), <code>git</code> requires the
+<code>SSH_AUTH_SOCK</code> variable and will otherwise fail:</p>
+<div class="language-text highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code>[INFO] Initializing environment for git@github.com:pre-commit/pre-commit-hooks.
+An unexpected error has occurred: CalledProcessError: command: (&#39;/usr/bin/git&#39;, &#39;fetch&#39;, &#39;origin&#39;, &#39;--tags&#39;)
+return code: 128
+expected return code: 0
+stdout: (none)
+stderr:
+    git@github.com: Permission denied (publickey).
+    fatal: Could not read from remote repository.
+
+    Please make sure you have the correct access rights
+    and the repository exists.
+
+Check the log at /home/asottile/.cache/pre-commit/pre-commit.log
+</code></pre></div>
+<p>Add the following to your tox testenv:</p>
+<div class="language-ini highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">[testenv]</span>
+<span style="color: #687822">passenv</span><span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span><span style="color: #BA2121">SSH_AUTH_SOCK</span>
+</code></pre></div>
+<p>Likewise, when cloning repos over http / https
+(<code>repo: https://github.com:...</code>), you might be working behind a corporate
+http(s) proxy server, in which case <code>git</code> requires the <code>http_proxy</code>,
+<code>https_proxy</code> and <code>no_proxy</code> variables to be set, or the clone may fail:</p>
+<div class="language-ini highlight" style="background: #f8f8f8"><pre style="line-height: 125%;"><span></span><code><span style="color: #008000; font-weight: bold">[testenv]</span>
+<span style="color: #687822">passenv</span><span style="color: #bbbbbb"> </span><span style="color: #666666">=</span><span style="color: #bbbbbb"> </span><span style="color: #BA2121">http_proxy https_proxy no_proxy</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="使用存储库的最新版本">使用存储库的最新版本<a class="headerlink" href="#使用存储库的最新版本" title="Permanent link">&para;</a></h2>
+<p><strong>Using the latest version for a repository</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="34:2"><input checked="checked" id="__tabbed_34_1" name="__tabbed_34" type="radio" /><input id="__tabbed_34_2" name="__tabbed_34" type="radio" /><div class="tabbed-labels"><label for="__tabbed_34_1">中文</label><label for="__tabbed_34_2">英文</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><code>pre-commit</code> 配置旨在提供可重复和快速的体验，因此故意不为钩子仓库提供“未锁定的最新版本”功能。</p>
+<p>相反，<code>pre-commit</code> 提供工具，使您能够轻松升级到最新版本，使用 <a href="../cli/#pre-commit-autoupdate"><code>pre-commit autoupdate</code></a>。如果您需要钩子的绝对最新版本（而不是最新的标签版本），请将 <code>--bleeding-edge</code> 参数传递给 <code>autoupdate</code>。</p>
+<p><code>pre-commit</code> 假设 <a href="../plugins/#repos-rev"><code>rev</code></a> 的值是不可变的引用（如标签或 SHA），并将基于此进行缓存。不支持将分支名称（或 <code>HEAD</code>）用作 <a href="../plugins/#repos-rev"><code>rev</code></a> 的值，这仅表示在钩子安装时该可变引用的状态（并且 <em>不会</em> 自动更新）。</p>
+</div>
+<div class="tabbed-block">
+<p><code>pre-commit</code> configuration aims to give a repeatable and fast experience and
+therefore intentionally doesn't provide facilities for "unpinned latest
+version" for hook repositories.</p>
+<p>Instead, <code>pre-commit</code> provides tools to make it easy to upgrade to the
+latest versions with <a href="#pre-commit-autoupdate"><code>pre-commit autoupdate</code></a>.  If
+you need the absolute latest version of a hook (instead of the latest tagged
+version), pass the <code>--bleeding-edge</code> parameter to <code>autoupdate</code>.</p>
+<p><code>pre-commit</code> assumes that the value of <a href="../plugins/#repos-rev"><code>rev</code></a> is an immutable ref (such as a
+tag or SHA) and will cache based on that.  Using a branch name (or <code>HEAD</code>) for
+the value of <a href="../plugins/#repos-rev"><code>rev</code></a> is not supported and will only represent the state of
+that mutable ref at the time of hook installation (and will <em>NOT</em> update
+automatically).</p>
+</div>
+</div>
+</div>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年9月24日</span>
+      
+        <br>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年9月24日</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["header.autohide", "navigation.top", "navigation.tabs", "navigation.tabs.sticky", "navigation.path", "content.tabs.link", "content.code.copy", "content.tooltips", "navigation.indexes", "navigation.prune", "navigation.instant"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.94c44541.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
